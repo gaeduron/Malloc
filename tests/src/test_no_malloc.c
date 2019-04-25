@@ -4,7 +4,7 @@
 int main()
 {
 	int i;
-	char *addr;
+	char addr[1];
 
 	i = 0;
 	while (i < 1024)
