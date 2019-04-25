@@ -1,11 +1,5 @@
-#include <sys/mman.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-void *ft_malloc(size_t len)
-{
-	return mmap(0, len, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
-}
 
 int main(int ac, char **av)
 {
@@ -17,7 +11,7 @@ int main(int ac, char **av)
 	nb = atoi(av[2]);
 	c = av[1][0];
 
-	str = (char *)ft_malloc(nb + 1);
+	str = (char *)malloc(nb + 1);
 
 	i = 0;
 	while (i < nb)
