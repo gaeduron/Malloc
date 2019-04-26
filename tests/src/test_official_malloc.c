@@ -14,6 +14,5 @@ int main()
 		i++;
 	}
 
-	printf("The end");
 	return (0);
 }
