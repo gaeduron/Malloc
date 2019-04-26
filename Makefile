@@ -52,3 +52,6 @@ fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
+
+test: 
+	@make test -C ./tests
