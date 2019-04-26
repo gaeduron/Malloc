@@ -10,4 +10,4 @@ echo "\n\n\nOFFICIAL MALLOC:"
 /usr/bin/time -l ./test_official_malloc
 
 echo "\n\n\nLIBFT MALLOC:"
-/usr/bin/time -l zsh ../srcs/run.sh ./test_official_malloc
+/usr/bin/time -l zsh ./run.sh ./test_official_malloc

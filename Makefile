@@ -49,9 +49,10 @@ clean:
 
 fclean: clean
 	@echo "Cleaning:\033[33m $(NAME)\033[0m"
+	@make fclean -C ./tests
 	@rm -f $(NAME)
 
 re: fclean all
 
-test: 
+test: all
 	@make test -C ./tests

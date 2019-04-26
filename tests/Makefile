@@ -26,7 +26,6 @@ $(NAME):
 	@$(CC) $(FLAGS) -o test_no_malloc $(SRCS_PATH)/test_no_malloc.c
 	@$(CC) $(FLAGS) -o test_official_malloc  $(SRCS_PATH)/test_official_malloc.c
 	@echo "Malloc Tests:\033[92m Created\033[0m"
-	@sh ./run_tests.sh
 
 clean:
 	@echo "Cleaning:\033[33m *.o\033[0m"
@@ -37,5 +36,5 @@ fclean: clean
 
 re: fclean all
 
-test:
+test: all
 	@sh ./run_tests.sh
