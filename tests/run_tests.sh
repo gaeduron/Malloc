@@ -16,7 +16,7 @@ echo "$malloc_pages"
 bc <<< "$malloc_pages - $default_pages"
 
 echo "\nLIBFT MALLOC:"
-libft_pages=$(zsh ./run.sh 2>&1 | grep "page reclaims" | sed 's/[^0-9]//g')
+libft_pages=$(zsh ./run.sh /usr/bin/time -l ./test_official_malloc 2>&1 | grep "page reclaims" | sed 's/[^0-9]//g')
 echo "$libft_pages"
 bc <<< "$libft_pages - $default_pages"
 
