@@ -12,6 +12,11 @@
 
 NAME            := libft_malloc.so
 
+ifeq ($(HOSTTYPE),)
+HOSTTYPE 		:= $(shell uname -m)_$(shell uname -s)
+endif
+FULLNAME		:= libft_malloc_$(HOSTTYPE).so
+
 CC              := gcc
 FLAGS           := -Wall -Wextra -Werror
 
@@ -39,7 +44,8 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
 	@$(CC) $(FLAGS) $(INCLUDES) -o $@ -c $<
 
 $(NAME): $(OBJS)
-	@$(CC) -shared $(OBJS) -o $@
+	@$(CC) -shared $(OBJS) -o $(FULLNAME)
+	@ln -fs $(FULLNAME) $@
 	@echo "$(NAME):\033[92m linked\033[0m"
 
 clean:
@@ -50,7 +56,7 @@ clean:
 fclean: clean
 	@echo "Cleaning:\033[33m $(NAME)\033[0m"
 	@make fclean -C ./tests
-	@rm -f $(NAME)
+	@rm -f $(NAME) ${FULLNAME}
 
 re: fclean all
 

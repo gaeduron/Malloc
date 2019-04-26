@@ -32,7 +32,7 @@ clean:
 
 fclean: clean
 	@echo "Cleaning:\033[33m $(NAME)\033[0m"
-	@rm print_page_size test_no_malloc test_official_malloc
+	@rm -f print_page_size test_no_malloc test_official_malloc
 
 re: fclean all
 
