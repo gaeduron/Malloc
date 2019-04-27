@@ -35,3 +35,13 @@ and “medium” malloc.
   “LARGE” mallocs, fron (m+1) bytes and more, will be stored out of zone,<br>
   which simply means with mmap(), they will be in a zone on their own.<br>
   ```
+
+## Structures
+### Global zone storage
+### Zone
+### Chunk
+
+## Functions Overview
+### Malloc
+### Free
+### Realloc
