@@ -44,6 +44,11 @@ When a chunk is in use by the application, the only data that's "remembered" is 
 You can use this size to find the next chunk in a **bin**.<br>
 
 ### Bin
+Bins contains **multiples chunks**. <br>
+They contain only a specific type of chunks, either only **SMALL** chunks or only **TINY** chunks.<br>
+A bin can contain at least **100 chunks**.<br>
+Each bins are the **same size** (e.g.: MAX_TINY_CHUNK_SIZE * 100 + headers).
+
 ### Zone
 ### Global zone storage
 
