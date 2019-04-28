@@ -50,7 +50,10 @@ A bin can contain at least **100 chunks**.<br>
 Each bins are the **same size** (e.g.: MAX_TINY_CHUNK_SIZE * 100 + headers).
 
 ### Zone
+
+
 ### Global zone storage
+This were all the zones *free list* are stored. This is a **global variable**. It can be access by **malloc and free**.
 
 ## Functions Overview
 ### Malloc
