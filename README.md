@@ -39,6 +39,7 @@ and “medium” malloc.
 ## Structures
 ### Global zone storage
 ### Zone
+### Bin
 ### Chunk
 
 ## Functions Overview
