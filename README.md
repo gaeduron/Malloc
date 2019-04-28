@@ -53,5 +53,9 @@ Here is an **overview** of how this malloc implementation will work <br>
 
 ![find_space](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_find-space_flowchart.png)
 
+**3 - search_in_zone**
+
+![search_in_zone](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_search-in-zone_flowchart.png)
+
 ### Free
 ### Realloc
