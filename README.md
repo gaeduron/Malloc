@@ -57,5 +57,9 @@ Here is an **overview** of how this malloc implementation will work <br>
 
 ![search_in_zone](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_search-in-zone_flowchart.png)
 
+**4 - create_bin**
+
+![create_bin](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_create-bin_flowchart.png)
+
 ### Free
 ### Realloc
