@@ -45,27 +45,20 @@ and “medium” malloc.
 ## Functions Overview
 ### Malloc
 Here is an **overview** of how this malloc implementation will work <br>
-**1 - malloc**
 
-<details><summary>Show flowchart</summary>
+<details><summary>1 - malloc</summary>
   <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart.png">
 </details>
 
-**2 - find_space**
-
-<details><summary>Show flowchart</summary>
+<details><summary>2 - find_space</summary>
   <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_find-space_flowchart.png">
 </details>
 
-**3 - search_in_zone**
-
-<details><summary>Show flowchart</summary>
+<details><summary>3 - search_in_zone</summary>
   <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_search-in-zone_flowchart.png">
 </details>
 
-**4 - create_bin**
-
-<details><summary>Show flowchart</summary>
+<details><summary>4 - create_bin</summary>
   <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_create-bin_flowchart.png">
 </details>
 
