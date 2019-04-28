@@ -46,7 +46,7 @@ and “medium” malloc.
 ### Malloc
 Here is an **overview** of how this malloc implementation will work <br>
 
-<details><summary>1 - malloc</summary>
+<details open><summary>1 - malloc</summary>
   <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart.png">
 </details>
 
