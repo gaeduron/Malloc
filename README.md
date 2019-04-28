@@ -49,5 +49,9 @@ Here is an **overview** of how this malloc implementation will work <br>
 
 ![malloc_flowchart](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart.png)
 
+**2 - find_space**
+
+![find_space](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_find-space_flowchart.png)
+
 ### Free
 ### Realloc
