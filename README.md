@@ -44,5 +44,10 @@ and “medium” malloc.
 
 ## Functions Overview
 ### Malloc
+Here is an **overview** of how this malloc implementation will work <br>
+**1 - malloc**
+
+![malloc_flowchart](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart.png)
+
 ### Free
 ### Realloc
