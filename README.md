@@ -47,19 +47,27 @@ and “medium” malloc.
 Here is an **overview** of how this malloc implementation will work <br>
 **1 - malloc**
 
-![malloc_flowchart](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart.png)
+<details><summary>Show flowchart</summary>
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart.png">
+</details>
 
 **2 - find_space**
 
-![find_space](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_find-space_flowchart.png)
+<details><summary>Show flowchart</summary>
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_find-space_flowchart.png">
+</details>
 
 **3 - search_in_zone**
 
-![search_in_zone](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_search-in-zone_flowchart.png)
+<details><summary>Show flowchart</summary>
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_search-in-zone_flowchart.png">
+</details>
 
 **4 - create_bin**
 
-![create_bin](https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_create-bin_flowchart.png)
+<details><summary>Show flowchart</summary>
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_create-bin_flowchart.png">
+</details>
 
 ### Free
 ### Realloc
