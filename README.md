@@ -37,10 +37,15 @@ and “medium” malloc.
   ```
 
 ## Structures
-### Global zone storage
-### Zone
-### Bin
 ### Chunk
+Each chunk has a **payload** *(where the user data is stored)* and **meta-data** about how big it is (via a size field in the chunk header). <br>
+Chunks **payload address** is what is returned to the user.<br>
+When a chunk is in use by the application, the only data that's "remembered" is the **size of the chunk**.<br>
+You can use this size to find the next chunk in a **bin**.<br>
+
+### Bin
+### Zone
+### Global zone storage
 
 ## Functions Overview
 ### Malloc
