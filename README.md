@@ -3,7 +3,7 @@
 ## Introduction
 
 This is **simple implementation** of malloc. This malloc is a way to get familiar with **memory allocation in C**.
-If you are looking for *more advanced* malloc implementation you can take a look at the [glibc implementation](https://github.com/lattera/glibc/blob/master/malloc/malloc.c).
+If you are looking for a *more advanced* malloc implementation you can take a look at the [glibc implementation](https://github.com/lattera/glibc/blob/master/malloc/malloc.c).
 
 ## Summary
 
