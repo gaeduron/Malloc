@@ -131,7 +131,7 @@ A free chunk:
 |x00  00  00  00  00  00  20| 00|
 |---|---|---|---|---|---|---|---|
 ```
-Now let's see an exemple of a 3 chunks
+Now let's see an exemple with 3 adjacent chunks
 
 ```
 |---|---|---|---|---|---|---|---|
