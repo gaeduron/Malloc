@@ -67,6 +67,14 @@ In this implementation the zones are `[TINY, SMALL, LARGE]`, but you could have 
 This were all the zones are stored. This is a **global variable**. It can be access by **malloc and free**.
 
 ## Data-Structures details
+### Chunk
+
+### Bin
+
+### Zone
+
+### Global zone storage
+
 
 ## Functions Overview
 ### Malloc
