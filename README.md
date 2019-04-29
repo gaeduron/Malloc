@@ -10,6 +10,10 @@ If you are looking for a *more advanced* malloc implementation you can take a lo
 1. [Guideline](#guideline)
 2. [Data-Structures overview](#data-structures-overview)
 3. [Data-Structures details](#data-structures-details)
+    1. [Chunk](#chunk)
+    2. [Bin](#bin)
+    3. [Zone](#zone)
+    4. [Global zone storage](#global-zone-storage)
 4. [Functions Overview](#functions-overview)
 5. [Documentation](#documentation)
 
