@@ -51,7 +51,7 @@ Each bins are the **same size** (e.g.: MAX_TINY_CHUNK_SIZE * 100 + headers).
 
 ### Zone
 Zones contains **multipes bins**.<br>
-Each zone is a **freelist** of all the bins that specific zone.
+Each zone is a **freelist** of all the bins in that specific zone.
 In this implementation the zones are `[TINY, SMALL, LARGE]`, but you could have more zones.
 
 ### Global zone storage
