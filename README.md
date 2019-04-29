@@ -179,17 +179,17 @@ So the L flag  mean that this is the last chunk in a bin.
 
 
 ### Bin
-Bins are multiples of `get_page_size()`, so they are large enough to be **allocated with mmap**.
-They have a header which contain **two pointers**.
-One pointing to the **next bin** in that zone and one pointing to the **previous bin**.
+Bins are multiples of `get_page_size()`, so they are large enough to be **allocated with mmap**.<br>
+They have a header which contain **two pointers**.<br>
+One pointing to the **next bin** in that zone and one pointing to the **previous bin**.<br>
 
-Bins are created with only **two chunk** at first.
-The first chunk will be **divided** at each new allocation needed.
-The second chunk is the **last chunk** of the bin.
+Bins are created with only **two chunk** at first.<br>
+Chunkd will be **divided** at each new allocation needed.<br>
+The second chunk is the **last chunk** of the bin. This chunk will **never hold user data**<br>
 
-The first chunk in a bin will always have the **flag F** (first) set as `True`.
-The last chunk in a bin will always have the **flag L** (last) set as `True`.
-That way we will know when we *hit the end of a bin* when searching for memory.
+The first chunk in a bin will always have the **flag F** (first) set as `True`.<br>
+The last chunk in a bin will always have the **flag L** (last) set as `True`.<br>
+That way we will know when we *hit the end of a bin* when searching for memory.<br>
 
 When **coalescing** our chunks, if we stumble upon the first chunk we will do the following:
 - Test if it's **free**.
