@@ -179,24 +179,24 @@ So the L flag  mean that this is the last chunk in a bin.
 
 
 ### Bin
-Bins are multiples of `get_page_size()`, so they are large enough to be allocated with mmap.
-They have a header which contain two pointers.
-One pointing to the next bin in that zone and one pointing to the previous one.
+Bins are multiples of `get_page_size()`, so they are large enough to be **allocated with mmap**.
+They have a header which contain **two pointers**.
+One pointing to the **next bin** in that zone and one pointing to the **previous bin**.
 
-Bins are created with only two chunk at first.
-The first chunk will be divided at each new allocation needed.
-The second chunk is the last chunk of the bin.
+Bins are created with only **two chunk** at first.
+The first chunk will be **divided** at each new allocation needed.
+The second chunk is the **last chunk** of the bin.
 
-The first chunk in a bin will always have the flag F (first) set as `True`.
-The last chunk in a bin will always have the flag L (last) set as `True`.
-That way we will know when we hit the end of a bin when searching for memory.
+The first chunk in a bin will always have the **flag F** (first) set as `True`.
+The last chunk in a bin will always have the **flag L** (last) set as `True`.
+That way we will know when we *hit the end of a bin* when searching for memory.
 
-When coalescing our chunks, if we stumble upon the first chunk we will do the following:
-- Test if it's free.
-- Test if it's adjacent to the last chunk of the bin.
-If the two conditions are true, this bin is empty and we can use `munmap()` to give it back to the system.
+When **coalescing** our chunks, if we stumble upon the first chunk we will do the following:
+- Test if it's **free**.
+- Test if it's **adjacent** to the **last chunk** of the bin.
+If the two conditions are **true**, this bin is empty and we can use `munmap()` to give it back to the system.
 
-Let's see a more visual explanation of the bin lifecycle:
+Let's see a more visual explanation of a **bin lifecycle**:
 ```
 
 void *ptr = (void*)malloc(8);
