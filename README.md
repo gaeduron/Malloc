@@ -179,20 +179,65 @@ So the L flag  mean that this is the last chunk in a bin.
 
 
 ### Bin
-
 Bins are multiples of `get_page_size()`, so they are large enough to be allocated with mmap.
 They have a header which contain two pointers.
 One pointing to the next bin in that zone and one pointing to the previous one.
 
-Bins are created with only one chunk at first.
-This chunk will be divided at each new allocation needed.
+Bins are created with only two chunk at first.
+The first chunk will be divided at each new allocation needed.
+The second chunk is the last chunk of the bin.
 
 The first chunk in a bin will always have the flag F (first) set as `True`.
 The last chunk in a bin will always have the flag L (last) set as `True`.
 That way we will know when we hit the end of a bin when searching for memory.
 
-When coalescing our chunks, if we can get a chunk with the flag F and L set as `True`.
-This mean this bin is free and we can use `munmap()` to give it back to the system.
+When coalescing our chunks, if we stumble upon the first chunk we will do the following:
+- Test if it's free.
+- Test if it's adjacent to the last chunk of the bin.
+If the two conditions are true, this bin is empty and we can use `munmap()` to give it back to the system.
+
+Let's see a more visual explanation of the bin lifecycle:
+```
+
+void *ptr = (void*)malloc(8);
+
+// create a bin 
+
+|    BIN HEADER   |                      BIN PAYLOAD                             |
+|                 |   first chunk                                       |lastchnk|
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+|*bck_ptr|*nxt_ptr| MAX|101|               free memory to use  | MAX|101|   0|010|
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+
+// create a chunk of size 8
+
+|    BIN HEADER   |                      BIN PAYLOAD                             |
+|                 |   first chunk                     |  second chunk   |lastchnk|
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+|*bck_ptr|*nxt_ptr|  24|101| free memory     |  24|101|   8|000| payload|   0|011|
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+
+free(ptr);
+
+// set the chunk as free
+
+|    BIN HEADER   |                      BIN PAYLOAD                             |
+|                 |   first chunk                     |  second chunk   |lastchnk|
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+|*bck_ptr|*nxt_ptr|  24|101| free memory     |  24|101|   8|000|   8|000|   0|010|
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+
+// defragment the bin
+
+|    BIN HEADER   |                      BIN PAYLOAD                             |
+|                 |   first chunk                                       |lastchnk|
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+|*bck_ptr|*nxt_ptr| MAX|101| free memory                       | MAX|101|   0|010|
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+
+// The first chunk is free and is adjacent to the last chunk, so we can give this bin to munmap()
+```
+
 
 ### Zone
 
