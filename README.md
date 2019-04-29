@@ -69,6 +69,111 @@ This were all the zones are stored. This is a **global variable**. It can be acc
 ## Data-Structures details
 ### Chunk
 
+
+Chunks are **8 bytes aligned**
+The **minimum size** of a chunk is `2*sizeof(void*)`. Usually `sizeof(void*)` is `sizeof(size_t)`.
+You can find the size of your *size_t* with this command:
+
+```sh
+echo | gcc -E -xc -include 'stddef.h' - | grep size_t
+```
+
+A chunk in use:
+```
+- schema -
+|---|---|---|---|---|---|---|---|
+|   size_of_the_chunk       |  P|    P = Previous chunk is in use
+|---|---|---|---|---|---|---|---|
+|            payload            |
+|                               |
+|                               |
+|                               |
+|---|---|---|---|---|---|---|---|
+	
+- example -
+|---|---|---|---|---|---|---|---|
+|x00  00  00  00  00  00  20| 01|    Size = 32 bytes, P = true 
+|---|---|---|---|---|---|---|---|
+|            payload            |    Payload = User data
+|                               |
+|                               |
+|                               |
+|---|---|---|---|---|---|---|---|
+```
+
+In a **free chunk** we also have at the end the size of the chunk. That way we can *navigate back* in our bin.
+We will use this way of navigation during the **memory defragmentation** process.
+Where we want to combine free chunk with adjacent free chunks to **"coalesce"** them into larger chunks.
+
+A free chunk:
+```
+		- schema -
+ 	    |---|---|---|---|---|---|---|---|
+		|	size_of_the_chunk       |  P|
+		|---|---|---|---|---|---|---|---|
+		|		     payload            |
+		|								|
+		|								|
+		|---|---|---|---|---|---|---|---|
+		|	size_of_the_chunk			|
+		|---|---|---|---|---|---|---|---|
+
+		- example -
+		|---|---|---|---|---|---|---|---|
+		|x00  00  00  00  00  00  20| 01| 	Size = 32 bytes, P = true 
+		|---|---|---|---|---|---|---|---|
+		|		     payload            |   Payload = User data
+		|								|
+		|								|
+		|---|---|---|---|---|---|---|---|
+		|x00  00  00  00  00  00  20| 00|
+		|---|---|---|---|---|---|---|---|
+
+```
+Now let's see an exemple of a 3 chunks
+
+```
+		|---|---|---|---|---|---|---|---|
+		|x00  00  00  00  00  00  20| 01| 	| Chunk 1
+		|---|---|---|---|---|---|---|---|	| Size = 32 bytes, previous chunk is used
+		|		     payload            |	| Is now free
+		|								|	|
+		|								|	|
+		|---|---|---|---|---|---|---|---|
+		|x00  00  00  00  00  00  20| 01|
+		|---|---|---|---|---|---|---|---|
+		|x00  00  00  00  00  00  18| 00| 	| Chunk 2 
+		|---|---|---|---|---|---|---|---|   | Size = 24 bytes, previous chunk is free
+		|		     payload            |   | Is now in use
+		|								|   |
+		|								|   |
+		|---|---|---|---|---|---|---|---|
+		|x00  00  00  00  00  00  08| 03|	| Chunk 3
+		|---|---|---|---|---|---|---|---|	| Size = 24 bytes, previous chunk is used
+ 	    |		     payload            |	| Is the last chunk of the bin
+		|---|---|---|---|---|---|---|---|
+```
+
+In the last chunk we have P = 3, this mean that it's the last chunk of the bin.
+Because our chunk are aligned on 8 bytes, we can use the three least significant bits of our size to set flags.
+
+```
+        Chunk 1 header in binary
+                                                                            | LP
+        |--------|--------|--------|--------|--------|--------|--------|--------|
+		|00000000|00000000|00000000|00000000|00000000|00000000|00100000|00000001|
+		|--------|--------|--------|--------|--------|--------|--------|--------|
+
+		Chunk 3 header in binary
+																			| LP			
+        |--------|--------|--------|--------|--------|--------|--------|--------|
+		|00000000|00000000|00000000|00000000|00000000|00000000|00001000|00000011|
+		|--------|--------|--------|--------|--------|--------|--------|--------|
+```
+
+So the L flag  mean that this is the last chunk in a bin.
+
+
 ### Bin
 
 ### Zone
