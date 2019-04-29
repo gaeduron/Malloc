@@ -180,6 +180,20 @@ So the L flag  mean that this is the last chunk in a bin.
 
 ### Bin
 
+Bins are multiples of `get_page_size()`, so they are large enough to be allocated with mmap.
+They have a header which contain two pointers.
+One pointing to the next bin in that zone and one pointing to the previous one.
+
+Bins are created with only one chunk at first.
+This chunk will be divided at each new allocation needed.
+
+The first chunk in a bin will always have the flag F (first) set as `True`.
+The last chunk in a bin will always have the flag L (last) set as `True`.
+That way we will know when we hit the end of a bin when searching for memory.
+
+When coalescing our chunks, if we can get a chunk with the flag F and L set as `True`.
+This mean this bin is free and we can use `munmap()` on it to give it back to the system.
+
 ### Zone
 
 ### Global zone storage
