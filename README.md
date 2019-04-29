@@ -50,10 +50,12 @@ A bin can contain at least **100 chunks**.<br>
 Each bins are the **same size** (e.g.: MAX_TINY_CHUNK_SIZE * 100 + headers).
 
 ### Zone
-
+Zones contains **multipes bins**.<br>
+Each zone is a **freelist** of all the bins that specific zone.
+In this implementation the zones are `[TINY, SMALL, LARGE]`, but you could have more zones.
 
 ### Global zone storage
-This were all the zones *free list* are stored. This is a **global variable**. It can be access by **malloc and free**.
+This were all the zones are stored. This is a **global variable**. It can be access by **malloc and free**.
 
 ## Functions Overview
 ### Malloc
