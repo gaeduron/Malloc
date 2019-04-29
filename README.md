@@ -267,10 +267,10 @@ Here is an **overview** of how this malloc implementation will work <br>
 ### Free
 ### Realloc
 
-Realloc will be **really simple** in this implementation.
-It will just **call malloc** to get a new space of the right size in memory.
-Then we will do a **memcopy** from the previous memory to the new one.
-Now we just **free** the old memory.
+Realloc will be **really simple** in this implementation.<br>
+It will just **call malloc** to get a new space of the right size in memory.<br>
+Then we will do a **memcopy** from the previous memory to the new one.<br>
+Now we just **free** the old memory.<br>
 Then **return the new pointer**.
 
 ## Documentation
