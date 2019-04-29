@@ -10,7 +10,7 @@ If you are looking for a *more advanced* malloc implementation you can take a lo
 <img width="40%" src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart.png">
 
 
-## Summary
+## 📖 Summary
 
 1. [Guideline](#guideline)
 2. [Data-Structures overview](#data-structures-overview)
@@ -25,7 +25,7 @@ If you are looking for a *more advanced* malloc implementation you can take a lo
     3. [Realloc](#realloc)
 5. [Documentation](#documentation)
 
-## Guideline
+## 🛠 Guideline
 
 This malloc implementation is **different** from the glibc. The constrain for this project are:
 
@@ -50,7 +50,7 @@ and “medium” malloc.
   which simply means with mmap(), they will be in a zone on their own.<br>
   ```
 
-## Data-Structures overview
+## 🔭 Data-Structures overview
 ### Chunk
 Each chunk has a **payload** *(where the user data is stored)* and **meta-data** about how big it is (via a size field in the chunk header). <br>
 Chunks **payload address** is what is returned to the user.<br>
@@ -71,8 +71,8 @@ In this implementation the zones are `[TINY, SMALL, LARGE]`, but you could have 
 ### Global zone storage
 This were all the zones are stored. This is a **global variable**. It can be access by **malloc and free**.
 
-## Data-Structures details
-### Chunk
+## 🔬 Data-Structures details
+### ✉️ Chunk
 
 
 Chunks are **8 bytes aligned**
@@ -178,7 +178,7 @@ Chunk 3 header in binary
 So the L flag  mean that this is the last chunk in a bin.
 
 
-### Bin
+### 📨 Bin
 Bins are multiples of `get_page_size()`, so they are large enough to be **allocated with mmap**.<br>
 They have a header which contain **two pointers**.<br>
 One pointing to the **next bin** in that zone and one pointing to the **previous bin**.<br>
@@ -238,7 +238,7 @@ free(ptr);
 // The first chunk is free and is adjacent to the last chunk, so we can give this bin to munmap()
 ```
 
-### Zone
+### 🗃 Zone
 A zone is a **freelist** where each **nodes is a bin**.
 
 ```
@@ -257,7 +257,7 @@ A zone is a **freelist** where each **nodes is a bin**.
 |--------|--------|---------|       |--------|--------|---------|       |--------|--------|---------|
 ```
 
-### Global zone storage
+### 🗄 Global zone storage
 It's a simple **array** with the first pointer of each zone.
 ```C
 enum zone {TINY, SMALL, LARGE, ZONE_COUNT};
@@ -267,7 +267,7 @@ extern void g_zones[ZONE_COUNT];
 // [TINY_PTR, SMALL_PTR, LARGE_PTR]
 ```
 
-## Functions Overview
+## ⚙️ Functions Overview
 ### Malloc
 Here is an **overview** of how this malloc implementation will work <br>
 
@@ -296,7 +296,7 @@ Then we will do a **memcopy** from the previous memory to the new one.<br>
 Now we just **free** the old memory.<br>
 Then **return the new pointer**.
 
-## Documentation
+## 📚 Documentation
 
 **Glibc implementation of malloc()**
 > [https://sourceware.org/glibc/wiki/MallocInternals](https://sourceware.org/glibc/wiki/MallocInternals)
