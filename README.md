@@ -192,7 +192,7 @@ The last chunk in a bin will always have the flag L (last) set as `True`.
 That way we will know when we hit the end of a bin when searching for memory.
 
 When coalescing our chunks, if we can get a chunk with the flag F and L set as `True`.
-This mean this bin is free and we can use `munmap()` on it to give it back to the system.
+This mean this bin is free and we can use `munmap()` to give it back to the system.
 
 ### Zone
 
