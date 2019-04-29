@@ -132,42 +132,42 @@ A free chunk:
 Now let's see an exemple of a 3 chunks
 
 ```
-		|---|---|---|---|---|---|---|---|
-		|x00  00  00  00  00  00  20| 01| 	| Chunk 1
-		|---|---|---|---|---|---|---|---|	| Size = 32 bytes, previous chunk is used
-		|		     payload            |	| Is now free
-		|								|	|
-		|								|	|
-		|---|---|---|---|---|---|---|---|
-		|x00  00  00  00  00  00  20| 01|
-		|---|---|---|---|---|---|---|---|
-		|x00  00  00  00  00  00  18| 00| 	| Chunk 2 
-		|---|---|---|---|---|---|---|---|   | Size = 24 bytes, previous chunk is free
-		|		     payload            |   | Is now in use
-		|								|   |
-		|								|   |
-		|---|---|---|---|---|---|---|---|
-		|x00  00  00  00  00  00  08| 03|	| Chunk 3
-		|---|---|---|---|---|---|---|---|	| Size = 24 bytes, previous chunk is used
- 	    |		     payload            |	| Is the last chunk of the bin
-		|---|---|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|---|
+|x00  00  00  00  00  00  20| 01|    | Chunk 1
+|---|---|---|---|---|---|---|---|    | Size = 32 bytes, previous chunk is used
+|            payload            |    | Is now free
+|                               |    |
+|                               |    |
+|---|---|---|---|---|---|---|---|
+|x00  00  00  00  00  00  20| 01|
+|---|---|---|---|---|---|---|---|
+|x00  00  00  00  00  00  18| 00|    | Chunk 2 
+|---|---|---|---|---|---|---|---|    | Size = 24 bytes, previous chunk is free
+|            payload            |    | Is now in use
+|                               |    |
+|                               |    |
+|---|---|---|---|---|---|---|---|
+|x00  00  00  00  00  00  08| 03|    | Chunk 3
+|---|---|---|---|---|---|---|---|    | Size = 24 bytes, previous chunk is used
+|            payload            |    | Is the last chunk of the bin
+|---|---|---|---|---|---|---|---|
 ```
 
-In the last chunk we have P = 3, this mean that it's the last chunk of the bin.
-Because our chunk are aligned on 8 bytes, we can use the three least significant bits of our size to set flags.
+In the last chunk we have **P = 3**, this mean that it's the **last chunk** of the bin.
+Because our chunk are aligned on 8 bytes, we can use the three *least significant* bits of our size to set **flags**.
 
 ```
-        Chunk 1 header in binary
-                                                                            | LP
-        |--------|--------|--------|--------|--------|--------|--------|--------|
-		|00000000|00000000|00000000|00000000|00000000|00000000|00100000|00000001|
-		|--------|--------|--------|--------|--------|--------|--------|--------|
+Chunk 1 header in binary
+                                                                    | LP
+|--------|--------|--------|--------|--------|--------|--------|--------|
+|00000000|00000000|00000000|00000000|00000000|00000000|00100000|00000001|
+|--------|--------|--------|--------|--------|--------|--------|--------|
 
-		Chunk 3 header in binary
-																			| LP			
-        |--------|--------|--------|--------|--------|--------|--------|--------|
-		|00000000|00000000|00000000|00000000|00000000|00000000|00001000|00000011|
-		|--------|--------|--------|--------|--------|--------|--------|--------|
+Chunk 3 header in binary
+                                                                    | LP			
+|--------|--------|--------|--------|--------|--------|--------|--------|
+|00000000|00000000|00000000|00000000|00000000|00000000|00001000|00000011|
+|--------|--------|--------|--------|--------|--------|--------|--------|
 ```
 
 So the L flag  mean that this is the last chunk in a bin.
