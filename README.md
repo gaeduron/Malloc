@@ -238,8 +238,24 @@ free(ptr);
 // The first chunk is free and is adjacent to the last chunk, so we can give this bin to munmap()
 ```
 
-
 ### Zone
+A zone is a **freelist** where each **nodes is a bin**.
+
+```
+|    BIN HEADER   | PAYLOAD |
+|--------|--------|---------|
+|*bck_ptr|*nxt_ptr| chunks  |
+|--------|--------|---------|
+
+
+|----------------------------------------------ZONE A-----------------------------------------------|
+
+|bin1_address = 0x001...            |bin2_address = 0x002...            |bin3_address = 0x003...  
+|    BIN HEADER   | PAYLOAD |       |    BIN HEADER   | PAYLOAD |       |    BIN HEADER   | PAYLOAD |
+|--------|--------|---------|       |--------|--------|---------|       |--------|--------|---------|
+|       0|0x002...| chunks  |  <->  |0x001...|0x003...| chunks  |  <->  |0x002...|       0| chunks  |
+|--------|--------|---------|       |--------|--------|---------|       |--------|--------|---------|
+```
 
 ### Global zone storage
 
