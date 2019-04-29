@@ -1,15 +1,11 @@
 # Malloc
 
-## Documentation
+## Introduction
 
-**Glibc implementation of malloc()**
-> [https://sourceware.org/glibc/wiki/MallocInternals](https://sourceware.org/glibc/wiki/MallocInternals)
+This is **simple implementation** of malloc. This malloc is a way to get familiar with **memory allocation in C**.
+If you are looking for *more advanced* malloc implementation you can take a look at the [glibc implementation](https://github.com/lattera/glibc/blob/master/malloc/malloc.c).
 
-**Really well documented implementation of malloc from glibc**
-> [https://github.com/lattera/glibc/blob/master/malloc/malloc.c](https://github.com/lattera/glibc/blob/master/malloc/malloc.c)
-
-**Good slides on mmap, sbrk, malloc** 
-> [https://pubweb.eng.utah.edu/~cs4400/malloc.pdf](https://pubweb.eng.utah.edu/~cs4400/malloc.pdf)
+## Summary
 
 ## Guideline
 
@@ -36,7 +32,7 @@ and “medium” malloc.
   which simply means with mmap(), they will be in a zone on their own.<br>
   ```
 
-## Structures
+## Data-Structures overview
 ### Chunk
 Each chunk has a **payload** *(where the user data is stored)* and **meta-data** about how big it is (via a size field in the chunk header). <br>
 Chunks **payload address** is what is returned to the user.<br>
@@ -56,6 +52,8 @@ In this implementation the zones are `[TINY, SMALL, LARGE]`, but you could have 
 
 ### Global zone storage
 This were all the zones are stored. This is a **global variable**. It can be access by **malloc and free**.
+
+## Data-Structures details
 
 ## Functions Overview
 ### Malloc
@@ -79,3 +77,14 @@ Here is an **overview** of how this malloc implementation will work <br>
 
 ### Free
 ### Realloc
+
+## Documentation
+
+**Glibc implementation of malloc()**
+> [https://sourceware.org/glibc/wiki/MallocInternals](https://sourceware.org/glibc/wiki/MallocInternals)
+
+**Really well documented implementation of malloc from glibc**
+> [https://github.com/lattera/glibc/blob/master/malloc/malloc.c](https://github.com/lattera/glibc/blob/master/malloc/malloc.c)
+
+**Good slides on mmap, sbrk, malloc** 
+> [https://pubweb.eng.utah.edu/~cs4400/malloc.pdf](https://pubweb.eng.utah.edu/~cs4400/malloc.pdf)
