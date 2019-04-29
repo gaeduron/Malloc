@@ -267,6 +267,12 @@ Here is an **overview** of how this malloc implementation will work <br>
 ### Free
 ### Realloc
 
+Realloc will be **really simple** in this implementation.
+It will just **call malloc** to get a new space of the right size in memory.
+Then we will do a **memcopy** from the previous memory to the new one.
+Now we just **free** the old memory.
+Then **return the new pointer**.
+
 ## Documentation
 
 **Glibc implementation of malloc()**
