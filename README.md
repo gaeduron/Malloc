@@ -7,6 +7,9 @@ If you are looking for a *more advanced* malloc implementation you can take a lo
 
 ## Summary
 
+1. [Guideline](#guideline)
+2. [Data-Structures overview](#data-structures-overview)
+
 ## Guideline
 
 This malloc implementation is **different** from the glibc. The constrain for this project are:
