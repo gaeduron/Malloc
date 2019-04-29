@@ -154,7 +154,7 @@ Now let's see an exemple of a 3 chunks
 ```
 
 In the last chunk we have **P = 3**, this mean that it's the **last chunk** of the bin.
-Because our chunk are aligned on 8 bytes, we can use the three *least significant* bits of our size to set **flags**.
+Because our chunk are aligned on 8 bytes, we can use the three *least significant* bits of our size to set some **flags**.
 
 ```
 Chunk 1 header in binary
