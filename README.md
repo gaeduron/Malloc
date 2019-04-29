@@ -258,7 +258,14 @@ A zone is a **freelist** where each **nodes is a bin**.
 ```
 
 ### Global zone storage
+It's a simple **array** with the first pointer of each zone.
+```C
+enum zone {TINY, SMALL, LARGE, ZONE_COUNT};
 
+extern void g_zones[ZONE_COUNT];
+
+// [TINY_PTR, SMALL_PTR, LARGE_PTR]
+```
 
 ## Functions Overview
 ### Malloc
