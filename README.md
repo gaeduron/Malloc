@@ -12,7 +12,7 @@ If you are looking for a *more advanced* malloc implementation you can take a lo
 
 ## 📖 Summary
 
-1. [Guideline](#guideline)
+1. [Guideline](#🛠_guideline)
 2. [Data-Structures overview](#data-structures-overview)
 3. [Data-Structures details](#data-structures-details)
     1. [Chunk](#chunk-1)
