@@ -7,7 +7,7 @@
 This is **simple implementation** of malloc. This malloc is a way to get familiar with **memory allocation in C**.
 If you are looking for a *more advanced* malloc implementation you can take a look at the [glibc implementation](https://github.com/lattera/glibc/blob/master/malloc/malloc.c).
 
-<img width="40%" src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart.png">
+<img width="40%" src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart_1.2.png">
 
 
 ## 📖 Summary
