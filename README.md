@@ -178,7 +178,7 @@ Chunk 3 header in binary
 So the L flag  mean that this is the last chunk in a bin.
 
 
-### 📨 Bin
+### 📂 Bin
 Bins are multiples of `get_page_size()`, so they are large enough to be **allocated with mmap**.<br>
 They have a header which contain **two pointers**.<br>
 One pointing to the **next bin** in that zone and one pointing to the **previous bin**.<br>
