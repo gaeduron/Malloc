@@ -15,7 +15,7 @@ If you are looking for a *more advanced* malloc implementation you can take a lo
 1. [Guideline](#-guideline)
 2. [Data-Structures overview](#-data-structures-overview)
 3. [Data-Structures details](#-data-structures-details)
-    1. [Chunk](#✉️-chunk)
+    1. [Chunk](#-chunk)
     2. [Bin](#-bin)
     3. [Zone](#-zone)
     4. [Global zone storage](#-global-zone-storage)
@@ -25,7 +25,7 @@ If you are looking for a *more advanced* malloc implementation you can take a lo
     3. [Realloc](#realloc)
 5. [Documentation](#-documentation)
 
-## 🛠 Guideline
+## 📃 Guideline
 
 This malloc implementation is **different** from the glibc. The constrain for this project are:
 
@@ -72,7 +72,7 @@ In this implementation the zones are `[TINY, SMALL, LARGE]`, but you could have 
 This were all the zones are stored. This is a **global variable**. It can be access by **malloc and free**.
 
 ## 🔬 Data-Structures details
-### ✉️ Chunk
+### 📄 Chunk
 
 
 Chunks are **8 bytes aligned**
@@ -267,7 +267,7 @@ extern void g_zones[ZONE_COUNT];
 // [TINY_PTR, SMALL_PTR, LARGE_PTR]
 ```
 
-## ⚙️ Functions Overview
+## 🛠 Functions Overview
 ### Malloc
 Here is an **overview** of how this malloc implementation will work <br>
 
