@@ -272,11 +272,11 @@ extern void g_zones[ZONE_COUNT];
 Here is an **overview** of how this malloc implementation will work <br>
 
 <details open><summary>1 - malloc</summary>
-  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart.png">
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_flowchart_1.2.png">
 </details>
 
 <details><summary>2 - find_space</summary>
-  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_find-space_flowchart.png">
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_find-space_flowchart_1.2.png">
 </details>
 
 <details><summary>3 - search_in_zone</summary>
@@ -284,8 +284,17 @@ Here is an **overview** of how this malloc implementation will work <br>
 </details>
 
 <details><summary>4 - create_bin</summary>
-  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_create-bin_flowchart.png">
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_create-bin_flowchart_1.2.png">
 </details>
+
+<details><summary>5 - set_chunk_header</summary>
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_set-chunk-header_flowchart.png">
+</details>
+
+<details><summary>6 - set_bin_headers</summary>
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/malloc_set-bin-headers_flowchart.png">
+</details>
+
 
 ### Free
 <details open><summary>1 - free</summary>
