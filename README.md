@@ -12,18 +12,18 @@ If you are looking for a *more advanced* malloc implementation you can take a lo
 
 ## 📖 Summary
 
-1. [Guideline](#🛠_guideline)
-2. [Data-Structures overview](#data-structures-overview)
-3. [Data-Structures details](#data-structures-details)
-    1. [Chunk](#chunk-1)
-    2. [Bin](#bin-1)
-    3. [Zone](#zone-1)
-    4. [Global zone storage](#global-zone-storage-1)
-4. [Functions Overview](#functions-overview)
-    1. [Malloc](#malloc-1)
-    2. [Free](#free)
-    3. [Realloc](#realloc)
-5. [Documentation](#documentation)
+1. [Guideline](#-guideline)
+2. [Data-Structures overview](#-data-structures-overview)
+3. [Data-Structures details](#-data-structures-details)
+    1. [Chunk](#-chunk-1)
+    2. [Bin](#-bin-1)
+    3. [Zone](#-zone-1)
+    4. [Global zone storage](#-global-zone-storage-1)
+4. [Functions Overview](#-functions-overview)
+    1. [Malloc](#-malloc-1)
+    2. [Free](#-free)
+    3. [Realloc](#-realloc)
+5. [Documentation](#-documentation)
 
 ## 🛠 Guideline
 
