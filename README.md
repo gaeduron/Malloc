@@ -288,6 +288,19 @@ Here is an **overview** of how this malloc implementation will work <br>
 </details>
 
 ### Free
+<details open><summary>1 - free</summary>
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/free_flowchart.png">
+</details>
+
+<details><summary>1 - defragment</summary>
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/free_defragment_flowchart.png">
+</details>
+
+<details><summary>1 - bin_is_empty</summary>
+  <img src="https://raw.githubusercontent.com/gaeduron/Malloc/master/images/free_bin-is-empty_flowchart.png">
+</details>
+
+
 ### Realloc
 
 Realloc will be **really simple** in this implementation.<br>
