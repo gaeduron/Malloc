@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/01 16:59:08 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/01 17:02:19 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 
 # define MAX_TINY_CHUNK 64
 # define MAX_SMALL_CHUNK 1024
+
+typedef struct		s_chunk
+{
+	size_t	prev_size;
+	size_t	size;
+}					t_chunk;
 
 typedef struct		s_bin
 {
