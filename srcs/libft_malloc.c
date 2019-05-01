@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:30:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/01 16:25:55 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/01 16:39:21 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ void	*set_bin_headers(void *memory, size_t size)
 	new_bin.next = g_zones[LARGE];
 	((t_bin*)memory)[0] = new_bin;
 	g_zones[LARGE] = &new_bin;
+}
+
+void	*malloc(size_t size)
+{
+	int zone;
+
+	if (size == NULL)
+		return (0);
+	zone = (size > MAX_TINY_CHUNK) + (size > MAX_SMALL_CHUNK);
+	return (find_space(size, zone));
 }
