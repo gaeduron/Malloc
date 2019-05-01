@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:30:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/01 16:43:08 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/01 16:56:27 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	*find_space(size_t size, int zone)
 		return (set_bin_headers(ft_mmap(size), size));
 	return (0);
 }
+
+t_bin *g_zones[MAX_ZONE];
 
 void	*malloc(size_t size)
 {

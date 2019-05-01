@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/01 16:43:20 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/01 16:55:22 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef enum        e_zone
     LARGE,
     MAX_ZONE
 }                   t_zone;
+
+extern t_bin        *g_zones[MAX_ZONE];
 
 void	*malloc(size_t size);
 void    *ft_mmap(size_t size);
