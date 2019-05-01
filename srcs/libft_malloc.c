@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:30:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/01 16:56:27 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/01 17:00:38 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	*set_bin_headers(void *memory, size_t size)
 	new_bin.next = g_zones[LARGE];
 	((t_bin*)memory)[0] = new_bin;
 	g_zones[LARGE] = &new_bin;
+	return (memory);
 }
 
 void	*find_space(size_t size, int zone)
