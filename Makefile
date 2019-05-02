@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gduron <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: gduron <gduron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/31 12:27:06 by gduron            #+#    #+#              #
-#    Updated: 2017/06/02 18:06:49 by gduron           ###   ########.fr        #
+#    Updated: 2019/05/02 16:04:48 by gduron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ ifeq ($(HOSTTYPE),)
 HOSTTYPE 		:= $(shell uname -m)_$(shell uname -s)
 endif
 FULLNAME		:= libft_malloc_$(HOSTTYPE).so
+STATICNAME		:= libft_malloc_static.a
 
 CC              := gcc
 FLAGS           := -Wall -Wextra -Werror
@@ -56,9 +57,11 @@ clean:
 fclean: clean
 	@echo "Cleaning:\033[33m $(NAME)\033[0m"
 	@make fclean -C ./tests
-	@rm -f $(NAME) ${FULLNAME}
+	@rm -f $(NAME) ${FULLNAME} $(STATICNAME)
 
 re: fclean all
 
 test: all
+	@ar rc $(STATICNAME) $(OBJS)
+	@ranlib $(STATICNAME)
 	@make test -C ./tests
