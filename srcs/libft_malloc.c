@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:30:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/02 20:01:23 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/02 20:28:49 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*set_bin_headers(size_t *memory, size_t size)
 	new_bin.next = g_zones[LARGE];
 	((t_bin*)memory)[0] = new_bin;
 	g_zones[LARGE] = &new_bin;
-	memory[2] = size;
+	memory[2] = ((size << 3) >> 3) + 0b101;
 	memory[((size + BIN_HEADERS_SIZE) / 8) - 1] = LAST_CHUNK_HEADER;
 	return (&(memory[3]));
 }
