@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:51:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/02 19:25:02 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/02 19:59:59 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	test_malloc_large(void)
 	ASSERT("MALLOC: should handle large allocation", ft_malloc(size) > 0);
 	alloc = (size_t*)ft_malloc(size);
 	ASSERT("MALLOC: allocation should be the right size", *(alloc - 1) == size);
-	last_adr = ((char *)alloc + size - 1);
+	last_adr = ((char *)alloc + size);
 	ASSERT("MALLOC: is the right size", *last_adr == 0 || *last_adr != 0);
 }
 
@@ -46,6 +46,8 @@ void	playground(void)
 	str = (size_t*)ft_malloc(7770);
 	str -= 3;
 	printf("bin headers: |%zu|%zu|%zu|%zu|\n", str[0], str[1], str[2], str[3]);
+	str = (size_t*)ft_malloc(4064);
+	printf("bin headers: |%zu|\n", str[4064 / 8]);
 }
 
 int		main(void)

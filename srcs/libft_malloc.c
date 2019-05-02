@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:30:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/02 18:09:09 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/02 20:01:23 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ void	*ft_mmap(size_t size)
 {
 	size_t	n;
 	size_t	pagesize;
+	void	*memory;
 
 	pagesize = getpagesize();
+	size += BIN_HEADERS_SIZE;
 	n = pagesize * ((size / pagesize) - (size % pagesize == 0) + 1);
-	return (mmap(0, n, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0));
+	memory = mmap(0, n, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+	return ((size_t*)memory);
 }
 
-void	*set_bin_headers(void *memory, size_t size)
+void	*set_bin_headers(size_t *memory, size_t size)
 {
 	t_bin new_bin;
 
@@ -30,8 +33,9 @@ void	*set_bin_headers(void *memory, size_t size)
 	new_bin.next = g_zones[LARGE];
 	((t_bin*)memory)[0] = new_bin;
 	g_zones[LARGE] = &new_bin;
-	((size_t*)memory)[2] = size;
-	return (&(((size_t*)memory)[3]));
+	memory[2] = size;
+	memory[((size + BIN_HEADERS_SIZE) / 8) - 1] = LAST_CHUNK_HEADER;
+	return (&(memory[3]));
 }
 
 void	*find_space(size_t size, int zone)

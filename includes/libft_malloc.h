@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/01 17:56:54 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/02 19:56:46 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 # define MAX_TINY_CHUNK 64
 # define MAX_SMALL_CHUNK 1024
+# define BIN_HEADERS_SIZE 32
+# define LAST_CHUNK_HEADER 0b0010
 
 typedef struct		s_chunk
 {
@@ -43,6 +45,6 @@ extern t_bin        *g_zones[MAX_ZONE];
 
 void	*ft_malloc(size_t size);
 void    *ft_mmap(size_t size);
-void	*set_bin_headers(void *memory, size_t size);
+void	*set_bin_headers(size_t *memory, size_t size);
 void	*find_space(size_t size, int zone);
 #endif
