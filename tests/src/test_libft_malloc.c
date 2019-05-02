@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:51:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/02 17:50:49 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/02 19:25:02 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	test_malloc_large(void)
 {
 	size_t	*alloc;
 	size_t	size;
-	size_t	*last_adr;
+	char	*last_adr;
 
-	size = 5000;
+	size = 4096 - 32;
 	ASSERT("MALLOC: should handle large allocation", ft_malloc(size) > 0);
 	alloc = (size_t*)ft_malloc(size);
 	ASSERT("MALLOC: allocation should be the right size", *(alloc - 1) == size);
-	last_adr = (alloc + size - 1);
+	last_adr = ((char *)alloc + size - 1);
 	ASSERT("MALLOC: is the right size", *last_adr == 0 || *last_adr != 0);
 }
 
@@ -38,11 +38,14 @@ void	playground(void)
 	size_t *str;
 
 	str = (size_t*)ft_malloc(5000);
-	printf("\nbin headers: |%zu|%zu|%zu|\n", str[0], str[1], str[2]);
+	str -= 3;
+	printf("\nbin headers: |%zu|%zu|%zu|%zu|\n", str[0], str[1], str[2], str[3]);
 	str = (size_t*)ft_malloc(4566);
-	printf("bin headers: |%zu|%zu|%zu|\n", str[0], str[1], str[2]);
+	str -= 3;
+	printf("bin headers: |%zu|%zu|%zu|%zu|\n", str[0], str[1], str[2], str[3]);
 	str = (size_t*)ft_malloc(7770);
-	printf("bin headers: |%zu|%zu|%zu|\n", str[0], str[1], str[2]);
+	str -= 3;
+	printf("bin headers: |%zu|%zu|%zu|%zu|\n", str[0], str[1], str[2], str[3]);
 }
 
 int		main(void)
