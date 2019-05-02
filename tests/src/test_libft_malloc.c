@@ -6,19 +6,28 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:51:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/02 16:03:39 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/02 16:51:24 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "../includes/tinytest.h"
 #include "../../includes/libft_malloc.h"
+
+void	test_malloc_zero(void)
+{
+	ASSERT("MALLOC: should handle zero", ft_malloc(0) == 0);
+}
+
+void	test_malloc_large(void)
+{
+	ASSERT("MALLOC: should handle large allocation", ft_malloc(5000) > 0);
+}
 
 int		main(void)
 {
-	void	*bin;
-
-	bin = 0;
-	bin = (void*)ft_malloc(5000);
-	printf("%p", bin);
-	return (0);
+	printf("\nMALLOC UNIT TEST:\n");
+	RUN(test_malloc_zero);
+	RUN(test_malloc_large);
+	return (TEST_REPORT());
 }
