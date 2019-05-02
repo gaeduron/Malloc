@@ -6,16 +6,16 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:30:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/01 18:40:56 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/02 16:11:21 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_malloc.h"
 
-void		*ft_mmap(size_t size)
+void	*ft_mmap(size_t size)
 {
-	size_t n;
-	size_t pagesize;
+	size_t	n;
+	size_t	pagesize;
 
 	pagesize = getpagesize();
 	n = pagesize * ((size / pagesize) - (size % pagesize == 0) + 1);
