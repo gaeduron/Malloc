@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:51:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/02 16:51:24 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/02 17:07:23 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	test_malloc_large(void)
 
 int		main(void)
 {
-	printf("\nMALLOC UNIT TEST:\n");
 	RUN(test_malloc_zero);
 	RUN(test_malloc_large);
 	return (TEST_REPORT());

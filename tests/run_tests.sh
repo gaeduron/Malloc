@@ -1,8 +1,11 @@
+echo "\n\033[1;33mMALLOC UNIT TEST:\033[0m\n"
+./test_libft_malloc
+
+echo "\n\n\033[1;33m42 CORRECTION TEST:\033[0m"
 echo "INFO:"
 ./print_page_size
 echo "$> nm ../libft_malloc.so"
 nm ../libft_malloc.so
-
 
 echo "\n\nDEFAULT:"
 default_pages=$(/usr/bin/time -l ./test_no_malloc 2>&1 | grep "page reclaims" | sed 's/[^0-9]//g')

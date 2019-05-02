@@ -6,7 +6,7 @@
 #    By: gduron <gduron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/31 12:27:06 by gduron            #+#    #+#              #
-#    Updated: 2019/05/02 16:54:36 by gduron           ###   ########.fr        #
+#    Updated: 2019/05/02 17:07:04 by gduron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,5 +41,4 @@ fclean: clean
 re: fclean all
 
 test: all
-	@ ./test_libft_malloc
 	@sh ./run_tests.sh
