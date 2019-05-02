@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:51:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/02 19:59:59 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/02 20:07:26 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	test_malloc_large(void)
 	ASSERT("MALLOC: allocation should be the right size", *(alloc - 1) == size);
 	last_adr = ((char *)alloc + size);
 	ASSERT("MALLOC: is the right size", *last_adr == 0 || *last_adr != 0);
+	ASSERT("MALLOC: bin are terminated by a final chunk", *last_adr == 2);
 }
 
 void	playground(void)
