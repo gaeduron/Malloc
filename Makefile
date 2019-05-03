@@ -6,7 +6,7 @@
 #    By: gduron <gduron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/31 12:27:06 by gduron            #+#    #+#              #
-#    Updated: 2019/05/03 14:21:39 by gduron           ###   ########.fr        #
+#    Updated: 2019/05/03 14:56:26 by gduron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ FULLNAME		:= libft_malloc_$(HOSTTYPE).so
 STATICNAME		:= libft_malloc_static.a
 
 CC              := gcc
-FLAGS           := -Wall -Wextra -Werror
+FLAGS           := -Wall -Wextra -Werror -g
 
 SRCS_FILES      :=  libft_malloc.c\
 					libft_free.c\
