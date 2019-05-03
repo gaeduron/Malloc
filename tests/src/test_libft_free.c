@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:38:14 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/03 17:02:38 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/03 19:50:00 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,21 @@ void	test_free_zero(void)
 void	test_free_large(void)
 {
 	t_chunk	*ptr;
+	char	*str;
+	int		*tab;
 
 	ptr = (t_chunk*)ft_malloc(5000);
+	str = (char*)ft_malloc(2000);
+	tab = (int*)ft_malloc(6500);
 	ASSERT("FREE: should free large allocations",
 		ft_free(ptr) == 1);
+	ASSERT("FREE: should be able to free after a free in the same zone",
+		ft_free(str) == 1);
+	ASSERT("FREE: should be able to free the last bin in the zone",
+		ft_free(tab) == 1);
+	ASSERT("FREE: g_zones[LARGE]\
+		should be empty after every bin has been freed",
+		g_zones[LARGE] == 0);
 }
 
 void	playground(void)
