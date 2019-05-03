@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 13:00:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/03 16:59:25 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/03 18:53:27 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,13 @@ int	free_bin(void *ptr, size_t size)
 int	ft_free(void *ptr)
 {
 	t_chunk	*chunk;
+	t_chunk *next_chunk;
 
 	if (ptr == 0)
 		return (2);
 	chunk = (t_chunk*)ptr - 1;
-	if ((chunk[(chunk->size / 16) + 1].size & 0b1) == 0)
+	next_chunk = (t_chunk*)((size_t*)ptr + chunk->size / 8 - 1);
+	if ((next_chunk->size & 0b1) == 0)
 		return (0);
 	if (chunk->size > MAX_SMALL_CHUNK)
 		return (free_bin(ptr, chunk->size));
