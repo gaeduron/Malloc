@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:51:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/03 13:19:48 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/03 17:06:02 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	test_malloc_large(void)
 		(alloc[-1] & FIRST_CHUNK_FLAGS) == FIRST_CHUNK_FLAGS);
 	last_adr = ((char *)alloc + size);
 	ASSERT("MALLOC: is the right size", *last_adr == 0 || *last_adr != 0);
-	ASSERT("MALLOC: bin are terminated by a final chunk", *last_adr == 2);
+	ASSERT("MALLOC: bin are terminated by a final chunk",
+		*last_adr == LAST_CHUNK_HEADER);
 }
 
 void	playground(void)
@@ -44,7 +45,8 @@ void	playground(void)
 
 	str = (size_t*)ft_malloc(5000);
 	str -= 3;
-	printf("\nbin headers: |%zu|%zu|%zu|%zu|\n", str[0], str[1], str[2], str[3]);
+	printf("\nbin headers: |%zu|%zu|%zu|%zu|\n",
+		str[0], str[1], str[2], str[3]);
 	str = (size_t*)ft_malloc(4566);
 	str -= 3;
 	printf("bin headers: |%zu|%zu|%zu|%zu|\n", str[0], str[1], str[2], str[3]);
