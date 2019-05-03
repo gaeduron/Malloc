@@ -6,12 +6,11 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 13:00:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/03 14:36:14 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/03 14:39:31 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_malloc.h"
-
 
 /*
 ** TODO: size might need to be a multiple of get page size
@@ -42,7 +41,7 @@ int	free_bin(void *ptr, size_t size)
 ** TODO: pointer being freed was not allocated error message
 */
 
-int	free(void *ptr)
+int	ft_free(void *ptr)
 {
 	t_chunk	*chunk;
 
