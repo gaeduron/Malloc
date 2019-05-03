@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/02 20:22:50 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/03 14:21:01 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,7 @@ void	*ft_malloc(size_t size);
 void    *ft_mmap(size_t size);
 void	*set_bin_headers(size_t *memory, size_t size);
 void	*find_space(size_t size, int zone);
+
+int		free(void *ptr);
+int		free_bin(void *ptr, size_t size);
 #endif
