@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:30:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/03 12:55:49 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/03 19:45:17 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@ void	*ft_mmap(size_t size)
 void	*set_bin_headers(size_t *memory, size_t size)
 {
 	t_bin new_bin;
+	t_bin *head_bin;
 
 	new_bin.last = 0;
 	new_bin.next = g_zones[LARGE];
 	((t_bin*)memory)[0] = new_bin;
-	g_zones[LARGE] = ((t_bin*)memory);
+	head_bin = g_zones[LARGE];
+	if (head_bin)
+		head_bin->last = (t_bin*)memory;
+	g_zones[LARGE] = (t_bin*)memory;
 	memory[2] = ((size << 3) >> 3) + 0b101;
 	memory[((size + BIN_HEADERS_SIZE) / 8) - 1] = LAST_CHUNK_HEADER;
 	return (&(memory[3]));
@@ -54,5 +58,6 @@ void	*ft_malloc(size_t size)
 	if (size == 0)
 		return (0);
 	zone = (size > MAX_TINY_CHUNK) + (size > MAX_SMALL_CHUNK);
+	size = size + (size % 8 != 0 ? 8 - size % 8 : 0);
 	return (find_space(size, zone));
 }

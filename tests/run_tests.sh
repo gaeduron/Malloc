@@ -1,5 +1,6 @@
 echo "\n\033[1;33mMALLOC UNIT TEST:\033[0m\n"
 ./test_libft_malloc
+./test_libft_free
 
 echo "\n\n\033[1;33m42 CORRECTION TEST:\033[0m"
 echo "INFO:"

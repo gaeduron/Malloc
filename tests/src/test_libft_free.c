@@ -1,0 +1,65 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_libft_free.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/03 14:38:14 by gduron            #+#    #+#             */
+/*   Updated: 2019/05/03 19:50:00 by gduron           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+#include "../includes/tinytest.h"
+#include "../../includes/libft_malloc.h"
+
+void	test_free_zero(void)
+{
+	ASSERT("FREE: should handle zero", ft_free(0) == 2);
+}
+
+void	test_free_large(void)
+{
+	t_chunk	*ptr;
+	char	*str;
+	int		*tab;
+
+	ptr = (t_chunk*)ft_malloc(5000);
+	str = (char*)ft_malloc(2000);
+	tab = (int*)ft_malloc(6500);
+	ASSERT("FREE: should free large allocations",
+		ft_free(ptr) == 1);
+	ASSERT("FREE: should be able to free after a free in the same zone",
+		ft_free(str) == 1);
+	ASSERT("FREE: should be able to free the last bin in the zone",
+		ft_free(tab) == 1);
+	ASSERT("FREE: g_zones[LARGE]\
+		should be empty after every bin has been freed",
+		g_zones[LARGE] == 0);
+}
+
+void	playground(void)
+{
+	void	*ptr;
+	t_chunk	*chunk;
+
+	ptr = ft_malloc(5000);
+	chunk = (t_chunk*)ptr - 1;
+	printf("\nsize in t_chunk: %zu\n", (chunk->size / 16));
+	printf("last chunk size: %zu\n",
+		chunk[(chunk->size / 16) + 1].size);
+	printf("last chunk size after AND: %zu\n",
+		chunk[(chunk->size / 16) + 1].size & 0b1);
+	printf("large zone pointer: %p\n", g_zones[LARGE]);
+	ft_free(ptr);
+	printf("large zone pointer after free: %p\n", g_zones[LARGE]);
+}
+
+int		main(void)
+{
+	playground();
+	RUN(test_free_zero);
+	RUN(test_free_large);
+	return (TEST_REPORT());
+}

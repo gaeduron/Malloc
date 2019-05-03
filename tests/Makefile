@@ -6,14 +6,14 @@
 #    By: gduron <gduron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/31 12:27:06 by gduron            #+#    #+#              #
-#    Updated: 2019/05/02 17:07:04 by gduron           ###   ########.fr        #
+#    Updated: 2019/05/03 15:58:59 by gduron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME            := malloc_tests
 
 CC              := gcc
-FLAGS           := -Wall -Wextra -Werror -fsanitize=address
+FLAGS           := -Wall -Wextra -Werror -fsanitize=address -g
 LIB				:= ft_malloc
 STATICLIB		:= ft_malloc_static
 
@@ -29,6 +29,7 @@ $(NAME):
 	@$(CC) $(FLAGS) -o test_no_malloc $(SRCS_PATH)/test_no_malloc.c
 	@$(CC) $(FLAGS) -o test_official_malloc  $(SRCS_PATH)/test_official_malloc.c
 	@$(CC) $(FLAGS) -o test_libft_malloc  $(SRCS_PATH)/test_libft_malloc.c -L.. -l$(STATICLIB)
+	@$(CC) $(FLAGS) -o test_libft_free  $(SRCS_PATH)/test_libft_free.c -L.. -l$(STATICLIB)
 	@echo "Malloc Tests:\033[92m Created\033[0m"
 
 clean:
@@ -36,7 +37,8 @@ clean:
 
 fclean: clean
 	@echo "Cleaning:\033[33m $(NAME)\033[0m"
-	@rm -f print_page_size test_no_malloc test_official_malloc test_libft_malloc ./includes/tinytest.h.gch
+	@rm -f print_page_size test_no_malloc test_official_malloc test_libft_malloc test_libft_free ./includes/tinytest.h.gch
+	@rm -rf ./*.dSYM
 
 re: fclean all
 
