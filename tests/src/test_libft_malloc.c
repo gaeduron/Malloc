@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:51:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/02 20:28:07 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/03 13:19:48 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	test_malloc_large(void)
 
 void	playground(void)
 {
-	size_t *str;
+	size_t	*str;
+	t_chunk	*ptr;
 
 	str = (size_t*)ft_malloc(5000);
 	str -= 3;
@@ -52,6 +53,9 @@ void	playground(void)
 	printf("bin headers: |%zu|%zu|%zu|%zu|\n", str[0], str[1], str[2], str[3]);
 	str = (size_t*)ft_malloc(4064);
 	printf("bin headers: |%zu|\n", str[4064 / 8]);
+	ptr = (t_chunk*)ft_malloc(5000);
+	printf("chunk headers: |%zu|%zu|\n", ptr[-1].prev_size, ptr[-1].size);
+	printf("chunk headers: |%zu\n", ptr[(ptr[-1].size / 16)].size);
 }
 
 int		main(void)
