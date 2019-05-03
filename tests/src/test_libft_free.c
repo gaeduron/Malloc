@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:38:14 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/03 19:50:00 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/03 21:37:29 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,65 @@ void	test_free_large(void)
 		g_zones[LARGE] == 0);
 }
 
+void	test_free_large_order2(void)
+{
+	char	*str;
+	size_t	*ptr;
+	int		*tab;
+
+	str = (char*)ft_malloc(2000);
+	ptr = (size_t*)ft_malloc(8933);
+	tab = (int*)ft_malloc(6500);
+	ASSERT("FREE: should free large zone pointer",
+		ft_free(ptr) == 1);
+	ASSERT("FREE: should work after a free in one of the middle bins",
+		ft_free(str) == 1);
+	ASSERT("FREE: should work after a free on the last bin",
+		ft_free(tab) == 1);
+	ASSERT("FREE: g_zones[LARGE]\
+		should be empty after every bin has been freed",
+		g_zones[LARGE] == 0);
+}
+
+void	test_free_large_order3(void)
+{
+	char	*str;
+	size_t	*ptr;
+	int		*tab;
+
+	str = (char*)ft_malloc(2000);
+	ptr = (size_t*)ft_malloc(8933);
+	tab = (int*)ft_malloc(6500);
+	ASSERT("FREE: should free large zone pointer",
+		ft_free(ptr) == 1);
+	ASSERT("FREE: should work after a free in one of the middle bins",
+		ft_free(tab) == 1);
+	ASSERT("FREE: should work after a free on the first bin",
+		ft_free(str) == 1);
+	ASSERT("FREE: g_zones[LARGE]\
+		should be empty after every bin has been freed",
+		g_zones[LARGE] == 0);
+}
+
+void	test_multiple_large(void)
+{
+	size_t	*ptr[4000];
+	int		i;
+
+	i = 0;
+	while (i < 4000)
+	{
+		ptr[i] = (size_t*)ft_malloc(i + 1025);
+		ASSERT("FREE: Large zone should contain bins when\
+			allocating large memory spaces",
+			g_zones[LARGE] != 0);
+		ft_free(ptr[i]);
+		i++;
+	}
+	ASSERT("FREE: free and malloc should handle multiple large allocation",
+		g_zones[LARGE] == 0);
+}
+
 void	playground(void)
 {
 	void	*ptr;
@@ -61,5 +120,7 @@ int		main(void)
 	playground();
 	RUN(test_free_zero);
 	RUN(test_free_large);
+	RUN(test_free_large_order2);
+	RUN(test_multiple_large);
 	return (TEST_REPORT());
 }
