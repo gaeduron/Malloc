@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 15:49:55 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 18:38:41 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define MAX_SMALL_CHUNK 1024
 # define BIN_HEADERS_SIZE 32
 # define LAST_CHUNK_HEADER 0b011
+# define LAST_CHUNK_FLAG 0b010
 # define FIRST_CHUNK_FLAGS 0b101
 
 typedef struct		s_chunk
@@ -54,5 +55,4 @@ int		ft_free(void *ptr);
 int		free_bin(void *ptr, size_t size);
 
 void	show_alloc_mem(void);
-void	show_chunk(t_chunk *chunk);
 #endif
