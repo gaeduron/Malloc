@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 14:34:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 20:30:40 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 20:41:08 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	show_chunk(t_chunk *chunk)
 	size_t	*chunk_start;
 	size_t	*chunk_end;
 
-	chunk_start = (size_t*)(chunk + 1);
-	chunk_end = chunk_start + chunk->size / 8 - 1;
+	chunk_start = chunk_to_mem_ptr(chunk);
+	chunk_end = (size_t*)next_chunk(chunk);
 	ft_printf("%p - %p : %zu bytes\n",
 		chunk_start, chunk_end, chunk_remove_flags(chunk->size), *chunk_end);
 	return ;
