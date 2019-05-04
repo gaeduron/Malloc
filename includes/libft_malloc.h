@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 20:15:00 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 20:20:11 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,6 @@ int		ft_free(void *ptr);
 int		free_bin(void *ptr, size_t size);
 
 void	show_alloc_mem(void);
+
+size_t	chunk_remove_flags(size_t size);
 #endif
