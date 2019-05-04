@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 20:51:32 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 21:00:46 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,6 @@ size_t	chunk_remove_flags(size_t size);
 size_t	*chunk_to_mem_ptr(t_chunk *chunk);
 t_chunk	*mem_to_chunk_ptr(size_t *mem);
 t_chunk	*get_next_chunk(t_chunk *chunk);
+
+t_chunk	*bin_get_first_chunk(t_bin *bin);
 #endif
