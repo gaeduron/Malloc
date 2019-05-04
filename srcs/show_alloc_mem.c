@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 14:34:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 20:23:36 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 20:30:40 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	go_through_zone(t_bin *head_bin)
 		while ((chunk->size & LAST_CHUNK_FLAG) == 0)
 		{
 			show_chunk(chunk);
-			chunk = (t_chunk*)((size_t*)chunk + chunk->size / 8 + 1);
+			chunk = next_chunk(chunk);
 		}
 		bin = bin->next;
 	}

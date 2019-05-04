@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 13:00:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 19:13:32 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 20:36:03 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	free_bin(void *ptr, size_t size)
 
 /*
 ** TODO: pointer being freed was not allocated error message
+** TODO: refactor chunk->size / 8 - 1 with next_chunk
 */
 
 int	ft_free(void *ptr)
