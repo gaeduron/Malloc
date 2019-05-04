@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 13:00:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/03 18:53:27 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 19:13:32 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ int	free_bin(void *ptr, size_t size)
 		next_bin->last = prev_bin;
 	}
 	else if (prev_bin == 0)
+	{
 		g_zones[LARGE] = bin->next;
+		if (bin->next)
+			next_bin->last = 0;
+	}
 	else
 		prev_bin->next = 0;
 	return (munmap((size_t*)ptr - 3, size) + 1);
