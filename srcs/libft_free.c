@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 13:00:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 20:36:03 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 20:51:04 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	ft_free(void *ptr)
 
 	if (ptr == 0)
 		return (2);
-	chunk = (t_chunk*)ptr - 1;
-	next_chunk = (t_chunk*)((size_t*)ptr + chunk->size / 8 - 1);
+	chunk = mem_to_chunk_ptr(ptr);
+	next_chunk = get_next_chunk(chunk);
 	if ((next_chunk->size & 0b1) == 0)
 		return (0);
 	if (chunk->size > MAX_SMALL_CHUNK)
