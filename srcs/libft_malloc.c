@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:30:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/03 19:45:17 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 21:14:06 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ void	*ft_mmap(size_t size)
 
 void	*set_bin_headers(size_t *memory, size_t size)
 {
-	t_bin new_bin;
-	t_bin *head_bin;
+	t_bin	new_bin;
+	t_bin	*head_bin;
+	t_chunk	*first_chunk;
+	t_chunk	*last_chunk;
 
 	new_bin.last = 0;
 	new_bin.next = g_zones[LARGE];
@@ -37,9 +39,12 @@ void	*set_bin_headers(size_t *memory, size_t size)
 	if (head_bin)
 		head_bin->last = (t_bin*)memory;
 	g_zones[LARGE] = (t_bin*)memory;
-	memory[2] = ((size << 3) >> 3) + 0b101;
-	memory[((size + BIN_HEADERS_SIZE) / 8) - 1] = LAST_CHUNK_HEADER;
-	return (&(memory[3]));
+	head_bin = (t_bin*)memory;
+	first_chunk = bin_get_first_chunk(head_bin);
+	first_chunk->size = chunk_remove_flags(size) + 0b101;
+	last_chunk = get_next_chunk(first_chunk);
+	last_chunk->size = LAST_CHUNK_HEADER;
+	return (chunk_to_mem_ptr(first_chunk));
 }
 
 void	*find_space(size_t size, int zone)

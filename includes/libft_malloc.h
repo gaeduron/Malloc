@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/03 16:56:04 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 21:00:46 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 # include <sys/mman.h>
 # include <unistd.h>
+# include "../libft/includes/libft.h"
 
 # define MAX_TINY_CHUNK 64
 # define MAX_SMALL_CHUNK 1024
 # define BIN_HEADERS_SIZE 32
 # define LAST_CHUNK_HEADER 0b011
-# define FIRST_CHUNK_FLAGS 0b101
+# define LAST_CHUNK_FLAG 0b010
+# define FIRST_CHUNK_HEADER 0b101
 
 typedef struct		s_chunk
 {
@@ -51,4 +53,13 @@ void	*find_space(size_t size, int zone);
 
 int		ft_free(void *ptr);
 int		free_bin(void *ptr, size_t size);
+
+void	show_alloc_mem(void);
+
+size_t	chunk_remove_flags(size_t size);
+size_t	*chunk_to_mem_ptr(t_chunk *chunk);
+t_chunk	*mem_to_chunk_ptr(size_t *mem);
+t_chunk	*get_next_chunk(t_chunk *chunk);
+
+t_chunk	*bin_get_first_chunk(t_bin *bin);
 #endif
