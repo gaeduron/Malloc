@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 14:45:21 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 15:02:50 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ void	*find_space(size_t size, int zone);
 int		ft_free(void *ptr);
 int		free_bin(void *ptr, size_t size);
 
-void	show_alloc_mem(void)
+void	show_alloc_mem(void);
 #endif
