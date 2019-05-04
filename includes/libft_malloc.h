@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 18:38:41 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 20:15:00 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define BIN_HEADERS_SIZE 32
 # define LAST_CHUNK_HEADER 0b011
 # define LAST_CHUNK_FLAG 0b010
-# define FIRST_CHUNK_FLAGS 0b101
+# define FIRST_CHUNK_HEADER 0b101
 
 typedef struct		s_chunk
 {

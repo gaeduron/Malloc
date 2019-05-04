@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:51:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/03 17:06:02 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 20:14:42 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	test_malloc_large(void)
 	ASSERT("MALLOC: should handle large allocation", ft_malloc(size) > 0);
 	alloc = (size_t*)ft_malloc(size);
 	ASSERT("MALLOC: allocation should be the right size",
-		alloc[-1] == size + FIRST_CHUNK_FLAGS);
+		alloc[-1] == size + FIRST_CHUNK_HEADER);
 	ASSERT("MALLOC: bin first chunk flags",
-		(alloc[-1] & FIRST_CHUNK_FLAGS) == FIRST_CHUNK_FLAGS);
+		(alloc[-1] & FIRST_CHUNK_HEADER) == FIRST_CHUNK_HEADER);
 	last_adr = ((char *)alloc + size);
 	ASSERT("MALLOC: is the right size", *last_adr == 0 || *last_adr != 0);
 	ASSERT("MALLOC: bin are terminated by a final chunk",
