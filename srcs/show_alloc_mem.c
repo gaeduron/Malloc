@@ -6,18 +6,13 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 14:34:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 20:59:23 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 21:12:53 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_malloc.h"
 
 t_bin *g_zones[MAX_ZONE];
-
-/*
-** It would be nice to refacto usual operation such as:
-** `chunk to next chunk` OR `remove flags from size`
-*/
 
 void	show_chunk(t_chunk *chunk)
 {
