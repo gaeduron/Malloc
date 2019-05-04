@@ -1,7 +1,3 @@
-echo "\n\033[1;33mMALLOC UNIT TEST:\033[0m\n"
-./test_libft_malloc
-./test_libft_free
-
 echo "\n\n\033[1;33m42 CORRECTION TEST:\033[0m"
 echo "INFO:"
 ./print_page_size
@@ -26,3 +22,8 @@ bc <<< "$libft_pages - $default_pages"
 
 echo "Minimal page number:"
 bc <<< "(1024 * 1024) / 4096"
+
+echo "\n\033[1;33mMALLOC UNIT TEST:\033[0m\n"
+./test_libft_malloc
+./test_libft_free
+./test_libft_show_alloc_mem
