@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 14:34:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 15:35:19 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 16:18:05 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,22 @@
 
 t_bin *g_zones[MAX_ZONE];
 
-// void	show_chunks(t_bin *head_bin)
-// {
-// 	return ;
-// }
+/*
+** It would be nice to refacto usual operation such as:
+** `chunk to next chunk` OR `remove flags from size`
+*/
+
+void	show_chunk(t_chunk *chunk)
+{
+	size_t	*chunk_start;
+	size_t	*chunk_end;
+
+	chunk_start = (size_t*)(chunk + 1);
+	chunk_end = chunk_start + chunk->size / 8 - 1;
+	ft_printf("\n%p - %p : %zu bytes\n",
+		chunk_start, chunk_end, ((chunk->size >> 3) << 3), *chunk_end);
+	return ;
+}
 
 // void	show_zone(t_bin *head_bin)
 // {

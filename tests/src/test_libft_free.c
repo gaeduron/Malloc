@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:38:14 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 15:17:01 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 15:55:02 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,15 +113,17 @@ void	playground(void)
 	printf("large zone pointer: %p\n", g_zones[LARGE]);
 	ft_free(ptr);
 	printf("large zone pointer after free: %p\n", g_zones[LARGE]);
-	show_alloc_mem();
+	ptr = ft_malloc(5000);
+	chunk = (t_chunk*)ptr - 1;
+	show_chunk(chunk);
 }
 
 int		main(void)
 {
-	playground();
 	RUN(test_free_zero);
 	RUN(test_free_large);
 	RUN(test_free_large_order2);
 	RUN(test_multiple_large);
+	playground();
 	return (TEST_REPORT());
 }
