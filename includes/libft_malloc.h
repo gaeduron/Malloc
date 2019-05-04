@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 15:02:50 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 15:14:21 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <sys/mman.h>
 # include <unistd.h>
+# include "../libft/includes/libft.h"
 
 # define MAX_TINY_CHUNK 64
 # define MAX_SMALL_CHUNK 1024

@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 14:34:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 15:03:21 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/04 15:35:19 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ void	show_alloc_mem(void)
 	while (i < MAX_ZONE)
 	{
 		//show_zone(g_zones[i]);
+		ft_printf("\nShowing zone: %d", i);
 		i++;
 	}
+	ft_printf("\n");
 	return ;
 }
