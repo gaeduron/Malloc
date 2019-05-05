@@ -26,4 +26,5 @@ bc <<< "(1024 * 1024) / 4096"
 echo "\n\033[1;33mMALLOC UNIT TEST:\033[0m\n"
 ./test_libft_malloc
 ./test_libft_free
+./test_libft_realloc
 ./test_libft_show_alloc_mem
