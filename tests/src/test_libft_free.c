@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:38:14 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 18:38:56 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 20:23:23 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,25 @@ void	test_multiple_large(void)
 		g_zones[LARGE] == 0);
 }
 
+void	test_multiple_tiny(void)
+{
+	size_t	*ptr[64];
+	int		i;
+
+	i = 0;
+	while (i < 63)
+	{
+		ptr[i] = (size_t*)ft_malloc(i + 1);
+		ASSERT("FREE: TINY zone should contain bins when\
+			allocating large memory spaces",
+			g_zones[TINY] != 0);
+		ft_free(ptr[i]);
+		i++;
+	}
+	ASSERT("FREE: free and malloc should handle multiple large allocation",
+		g_zones[TINY] == 0);
+}
+
 void	playground(void)
 {
 	void	*ptr;
@@ -117,6 +136,9 @@ void	playground(void)
 	ptr = ft_malloc(5000);
 	chunk = (t_chunk*)ptr - 1;
 	ptr2 = ft_malloc(5003);
+	ptr2 = ft_malloc(4);
+	show_alloc_mem();
+	ft_free(ptr2);
 	show_alloc_mem();
 }
 
@@ -126,6 +148,7 @@ int		main(void)
 	RUN(test_free_large);
 	RUN(test_free_large_order2);
 	RUN(test_multiple_large);
+	RUN(test_multiple_tiny);
 	playground();
 	return (TEST_REPORT());
 }

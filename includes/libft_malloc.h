@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 11:20:52 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 19:38:25 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define LAST_CHUNK_HEADER 0b011
 # define LAST_CHUNK_FLAG 0b010
 # define FIRST_CHUNK_HEADER 0b101
+# define FIRST_CHUNK_FLAG 0b100
+# define PREVIOUS_CHUNK_USED_FLAG 0b001
 
 typedef struct		s_chunk
 {
@@ -47,12 +49,11 @@ typedef enum        e_zone
 extern t_bin        *g_zones[MAX_ZONE];
 
 void	*ft_malloc(size_t size);
-void    *ft_mmap(size_t size);
-void	*set_bin_headers(size_t *memory, size_t size);
-void	*find_space(size_t size, int zone);
+void	*set_chunk_header(t_chunk *chunk, size_t size, int zone);
+void	*search_in_zone(size_t size, int zone);
+int		create_bin(int zone);
 
 int		ft_free(void *ptr);
-int		free_bin(void *ptr, size_t size);
 
 void	*ft_realloc(void *ptr, size_t size);
 
@@ -62,6 +63,11 @@ size_t	chunk_remove_flags(size_t size);
 size_t	*chunk_to_mem_ptr(t_chunk *chunk);
 t_chunk	*mem_to_chunk_ptr(size_t *mem);
 t_chunk	*get_next_chunk(t_chunk *chunk);
+t_chunk	*get_prev_chunk(t_chunk *chunk);
 
 t_chunk	*bin_get_first_chunk(t_bin *bin);
+t_bin	*first_chunk_get_bin(t_chunk *chunk);
+t_bin	*remove_bin_from_zone(t_bin *bin, int zone);
+t_bin	*add_bin_to_zone(t_bin *bin, int zone);
+int		find_zone(t_bin *bin);
 #endif

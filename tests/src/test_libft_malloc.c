@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:51:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 20:14:42 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 18:21:27 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ void	test_malloc_large(void)
 		*last_adr == LAST_CHUNK_HEADER);
 }
 
+void	test_malloc_small_tiny(void)
+{
+	size_t	*alloc;
+	size_t	size;
+	t_chunk	*next_chunk;
+
+	size = 48;
+	alloc = (size_t*)ft_malloc(size);
+	ASSERT("MALLOC: should handle tiny allocation", alloc > 0);
+	ASSERT("MALLOC: allocation should be the right size",
+		alloc[-1] / 8 == size / 8);
+	next_chunk = get_next_chunk(mem_to_chunk_ptr(alloc));
+	ASSERT("MALLOC: chunk should have a next chunk", next_chunk->size % 2 == 1);
+}
+
 void	playground(void)
 {
 	size_t	*str;
@@ -58,6 +73,15 @@ void	playground(void)
 	ptr = (t_chunk*)ft_malloc(5000);
 	printf("chunk headers: |%zu|%zu|\n", ptr[-1].prev_size, ptr[-1].size);
 	printf("chunk headers: |%zu\n", ptr[(ptr[-1].size / 16)].size);
+	show_alloc_mem();
+	str = (size_t*)ft_malloc(1);
+	str = (size_t*)ft_malloc(16);
+	str = (size_t*)ft_malloc(34);
+	show_alloc_mem();
+	str = (size_t*)ft_malloc(65);
+	str = (size_t*)ft_malloc(245);
+	str = (size_t*)ft_malloc(1000);
+	show_alloc_mem();
 }
 
 int		main(void)
@@ -65,5 +89,6 @@ int		main(void)
 	playground();
 	RUN(test_malloc_zero);
 	RUN(test_malloc_large);
+	RUN(test_malloc_small_tiny);
 	return (TEST_REPORT());
 }
