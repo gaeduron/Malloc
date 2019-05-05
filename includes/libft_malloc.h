@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 14:30:17 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 16:18:13 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define LAST_CHUNK_HEADER 0b011
 # define LAST_CHUNK_FLAG 0b010
 # define FIRST_CHUNK_HEADER 0b101
+# define PREVIOUS_CHUNK_USED_FLAG 0b001
 
 typedef struct		s_chunk
 {
@@ -47,7 +48,7 @@ typedef enum        e_zone
 extern t_bin        *g_zones[MAX_ZONE];
 
 void	*ft_malloc(size_t size);
-void	*set_chunk_header(t_chunk *chunk);
+void	*set_chunk_header(t_chunk *chunk, size_t size, int zone);
 void	*search_in_zone(size_t size, int zone);
 int		create_bin(int zone);
 

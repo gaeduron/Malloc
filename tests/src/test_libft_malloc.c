@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:51:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 20:14:42 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 16:21:21 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,15 @@ void	playground(void)
 	ptr = (t_chunk*)ft_malloc(5000);
 	printf("chunk headers: |%zu|%zu|\n", ptr[-1].prev_size, ptr[-1].size);
 	printf("chunk headers: |%zu\n", ptr[(ptr[-1].size / 16)].size);
+	show_alloc_mem();
+	str = (size_t*)ft_malloc(1);
+	str = (size_t*)ft_malloc(16);
+	str = (size_t*)ft_malloc(34);
+	show_alloc_mem();
+	str = (size_t*)ft_malloc(65);
+	str = (size_t*)ft_malloc(245);
+	str = (size_t*)ft_malloc(1000);
+	show_alloc_mem();
 }
 
 int		main(void)

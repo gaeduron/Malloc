@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 13:51:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 15:14:45 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 16:19:33 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,50 @@
 
 t_bin *g_zones[MAX_ZONE];
 
-void	*set_chunk_header(t_chunk *chunk)
+/*
+** TODO: make the chunk division FIFO
+*/
+
+void	*set_chunk_header(t_chunk *chunk, size_t size, int zone)
 {
+	int		min_chunk[2];
+	size_t	first_size;
+	t_chunk *next_chunk;
+
+	min_chunk[0] = 8 + 8;
+	min_chunk[1] = MAX_TINY_CHUNK + 8 + 8;
+	if (chunk->size >= size + min_chunk[zone])
+	{
+		first_size = chunk->size;
+		chunk->size = size + (chunk->size - chunk_remove_flags(chunk->size));
+		next_chunk = get_next_chunk(chunk);
+		next_chunk->size = first_size - size - 8 + PREVIOUS_CHUNK_USED_FLAG;
+	}
+	else
+	{
+		next_chunk = get_next_chunk(chunk);
+		next_chunk->size += PREVIOUS_CHUNK_USED_FLAG;
+	}
 	return (chunk);
 }
 
 void	*search_in_zone(size_t size, int zone)
 {
-	zone = 0;
-	size = 0;
+	t_bin	*bin;
+	t_chunk	*chunk;
+
+	bin = g_zones[zone];
+	while (bin != 0)
+	{
+		chunk = bin_get_first_chunk(bin);
+		while ((chunk->size & LAST_CHUNK_FLAG) == 0)
+		{
+			if (chunk->size >= size)
+				return (set_chunk_header(chunk, size, zone));
+			chunk = get_next_chunk(chunk);
+		}
+		bin = bin->next;
+	}
 	return (0);
 }
 
