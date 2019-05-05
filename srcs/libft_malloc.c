@@ -6,11 +6,13 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:30:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 21:14:06 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 13:49:20 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_malloc.h"
+
+t_bin *g_zones[MAX_ZONE];
 
 void	*ft_mmap(size_t size)
 {
@@ -49,12 +51,16 @@ void	*set_bin_headers(size_t *memory, size_t size)
 
 void	*find_space(size_t size, int zone)
 {
+	void	*alloc;
+
 	if (zone == LARGE)
 		return (set_bin_headers(ft_mmap(size), size));
-	return (0);
+	alloc = search_in_zone(size, zone);
+	if (alloc)
+		return (alloc);
+	create_bin(zone);
+	return (find_space(size, zone));
 }
-
-t_bin *g_zones[MAX_ZONE];
 
 void	*ft_malloc(size_t size)
 {
