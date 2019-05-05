@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 13:00:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 19:22:56 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 20:17:09 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int	free_chunk(t_chunk *chunk)
 	next_chunk->size &= ~(1UL);
 	next_chunk->prev_size = chunk_remove_flags(chunk->size);
 	if (!(next_chunk->size & LAST_CHUNK_FLAG) && \
-		get_next_chunk(next_chunk)->size % 2)
+		get_next_chunk(next_chunk)->size % 2 == 0)
 		chunk->size += chunk_remove_flags(next_chunk->size) + 8;
-	if (chunk->size % 2 && !(chunk->size & FIRST_CHUNK_FLAG))
+	if (chunk->size % 2 == 0 && !(chunk->size & FIRST_CHUNK_FLAG))
 		prev_chunk->size += chunk_remove_flags(chunk->size) + 8;
 	if (bin_is_empty(chunk, next_chunk))
 	{

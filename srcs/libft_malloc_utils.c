@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 13:51:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 18:25:30 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 20:15:56 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	*set_chunk_header(t_chunk *chunk, size_t size, int zone)
 		chunk->size = first_size - size - 8;
 		next_chunk = get_next_chunk(chunk);
 		next_chunk->size = size;
+		next_chunk->prev_size = chunk->size;
 		chunk = next_chunk;
 		next_chunk = get_next_chunk(chunk);
 		next_chunk->size |= PREVIOUS_CHUNK_USED_FLAG;
