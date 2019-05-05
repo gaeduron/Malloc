@@ -6,7 +6,7 @@
 #    By: gduron <gduron@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/31 12:27:06 by gduron            #+#    #+#              #
-#    Updated: 2019/05/05 11:21:06 by gduron           ###   ########.fr        #
+#    Updated: 2019/05/05 13:59:51 by gduron           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ CC              := gcc
 FLAGS           := -Wall -Wextra -Werror -g
 
 SRCS_FILES      :=  libft_malloc.c\
+					libft_malloc_utils.c\
 					libft_free.c\
 					libft_realloc.c\
 					show_alloc_mem.c\
