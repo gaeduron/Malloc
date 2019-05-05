@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 16:18:13 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 19:38:25 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define LAST_CHUNK_HEADER 0b011
 # define LAST_CHUNK_FLAG 0b010
 # define FIRST_CHUNK_HEADER 0b101
+# define FIRST_CHUNK_FLAG 0b100
 # define PREVIOUS_CHUNK_USED_FLAG 0b001
 
 typedef struct		s_chunk
@@ -62,8 +63,11 @@ size_t	chunk_remove_flags(size_t size);
 size_t	*chunk_to_mem_ptr(t_chunk *chunk);
 t_chunk	*mem_to_chunk_ptr(size_t *mem);
 t_chunk	*get_next_chunk(t_chunk *chunk);
+t_chunk	*get_prev_chunk(t_chunk *chunk);
 
 t_chunk	*bin_get_first_chunk(t_bin *bin);
+t_bin	*first_chunk_get_bin(t_chunk *chunk);
 t_bin	*remove_bin_from_zone(t_bin *bin, int zone);
 t_bin	*add_bin_to_zone(t_bin *bin, int zone);
+int		find_zone(t_bin *bin);
 #endif

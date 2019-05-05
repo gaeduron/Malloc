@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/04 20:55:15 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 14:43:48 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 19:38:13 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 t_chunk	*bin_get_first_chunk(t_bin *bin)
 {
 	return ((t_chunk*)((size_t*)bin + 1));
+}
+
+t_bin	*first_chunk_get_bin(t_chunk *chunk)
+{
+	return ((t_bin*)((size_t*)chunk - 1));
 }
 
 t_bin	*remove_bin_from_zone(t_bin *bin, int zone)
@@ -51,4 +56,20 @@ t_bin	*add_bin_to_zone(t_bin *bin, int zone)
 		head_bin->last = bin;
 	g_zones[zone] = bin;
 	return (bin);
+}
+
+int		find_zone(t_bin *bin)
+{
+	int i;
+
+	i = 0;
+	while (bin->last)
+	{
+		bin = bin->last;
+	}
+	while (g_zones[i] != bin)
+	{
+		i++;
+	}
+	return (i);
 }
