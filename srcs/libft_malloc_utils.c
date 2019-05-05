@@ -6,17 +6,13 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 13:51:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 18:17:32 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 18:25:30 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_malloc.h"
 
 t_bin *g_zones[MAX_ZONE];
-
-/*
-** TODO: make the chunk division FIFO
-*/
 
 void	*set_chunk_header(t_chunk *chunk, size_t size, int zone)
 {
