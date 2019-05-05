@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 13:00:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/04 21:13:01 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 14:46:36 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,9 @@ t_bin *g_zones[MAX_ZONE];
 int	free_bin(void *ptr, size_t size)
 {
 	t_bin	*bin;
-	t_bin	*prev_bin;
-	t_bin	*next_bin;
 
 	bin = (t_bin*)((size_t*)ptr - 3);
-	prev_bin = bin->last;
-	next_bin = bin->next;
-	if (prev_bin != 0 && next_bin != 0)
-	{
-		prev_bin->next = next_bin;
-		next_bin->last = prev_bin;
-	}
-	else if (prev_bin == 0)
-	{
-		g_zones[LARGE] = bin->next;
-		if (bin->next)
-			next_bin->last = 0;
-	}
-	else
-		prev_bin->next = 0;
+	remove_bin_from_zone(bin, LARGE);
 	return (munmap((size_t*)ptr - 3, size) + 1);
 }
 
