@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 13:30:22 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 13:49:20 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 14:50:31 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,11 @@ void	*ft_mmap(size_t size)
 
 void	*set_bin_headers(size_t *memory, size_t size)
 {
-	t_bin	new_bin;
 	t_bin	*head_bin;
 	t_chunk	*first_chunk;
 	t_chunk	*last_chunk;
 
-	new_bin.last = 0;
-	new_bin.next = g_zones[LARGE];
-	((t_bin*)memory)[0] = new_bin;
-	head_bin = g_zones[LARGE];
-	if (head_bin)
-		head_bin->last = (t_bin*)memory;
-	g_zones[LARGE] = (t_bin*)memory;
-	head_bin = (t_bin*)memory;
+	head_bin = add_bin_to_zone((t_bin*)memory, LARGE);
 	first_chunk = bin_get_first_chunk(head_bin);
 	first_chunk->size = chunk_remove_flags(size) + 0b101;
 	last_chunk = get_next_chunk(first_chunk);
