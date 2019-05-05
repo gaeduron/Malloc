@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 11:20:52 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 14:01:48 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,11 @@ typedef enum        e_zone
 extern t_bin        *g_zones[MAX_ZONE];
 
 void	*ft_malloc(size_t size);
-void    *ft_mmap(size_t size);
-void	*set_bin_headers(size_t *memory, size_t size);
-void	*find_space(size_t size, int zone);
+void	*set_chunk_header(t_chunk *chunk);
+void	*search_in_zone(size_t size, int zone);
+int		create_bin(int zone);
 
 int		ft_free(void *ptr);
-int		free_bin(void *ptr, size_t size);
 
 void	*ft_realloc(void *ptr, size_t size);
 
