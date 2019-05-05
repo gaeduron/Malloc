@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/05 10:51:25 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 12:19:53 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 12:50:40 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*ft_realloc(void *ptr, size_t size)
 		if ((current_size + 32 - 8) / 4096 == (size + 32) / 4096)
 			return (ptr);
 	}
-	new_ptr = ft_memcpy(malloc(size), ptr, current_size);
-	free(ptr);
+	new_ptr = ft_memcpy(ft_malloc(size), ptr, current_size);
+	ft_free(ptr);
 	return (new_ptr);
 }
