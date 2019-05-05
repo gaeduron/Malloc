@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 13:00:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 14:46:36 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 18:31:24 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ int	free_bin(void *ptr, size_t size)
 	return (munmap((size_t*)ptr - 3, size) + 1);
 }
 
-/*
-** TODO: pointer being freed was not allocated error message
-*/
-
 int	ft_free(void *ptr)
 {
 	t_chunk	*chunk;
@@ -41,7 +37,11 @@ int	ft_free(void *ptr)
 	chunk = mem_to_chunk_ptr(ptr);
 	next_chunk = get_next_chunk(chunk);
 	if ((next_chunk->size & 0b1) == 0)
+	{
+		ft_printf("malloc: *** error for object %p: \
+		pointer being freed was not allocated", ptr);
 		return (0);
+	}
 	if (chunk->size > MAX_SMALL_CHUNK)
 		return (free_bin(ptr, chunk->size));
 	return (1);
