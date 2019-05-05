@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 15:20:29 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 14:01:48 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/05 14:30:17 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,6 @@ t_chunk	*mem_to_chunk_ptr(size_t *mem);
 t_chunk	*get_next_chunk(t_chunk *chunk);
 
 t_chunk	*bin_get_first_chunk(t_bin *bin);
+t_bin	*remove_bin_from_zone(t_bin *bin, int zone);
+t_bin	*add_bin_to_zone(t_bin *bin, int zone);
 #endif
