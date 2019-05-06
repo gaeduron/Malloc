@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:38:14 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 20:23:23 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/06 14:25:47 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,27 +119,7 @@ void	test_multiple_tiny(void)
 
 void	playground(void)
 {
-	void	*ptr;
-	void	*ptr2;
-	t_chunk	*chunk;
-
-	ptr = ft_malloc(5000);
-	chunk = (t_chunk*)ptr - 1;
-	printf("\nsize in t_chunk: %zu\n", (chunk->size / 16));
-	printf("last chunk size: %zu\n",
-		chunk[(chunk->size / 16) + 1].size);
-	printf("last chunk size after AND: %zu\n",
-		chunk[(chunk->size / 16) + 1].size & 0b1);
-	printf("large zone pointer: %p\n", g_zones[LARGE]);
-	ft_free(ptr);
-	printf("large zone pointer after free: %p\n", g_zones[LARGE]);
-	ptr = ft_malloc(5000);
-	chunk = (t_chunk*)ptr - 1;
-	ptr2 = ft_malloc(5003);
-	ptr2 = ft_malloc(4);
-	show_alloc_mem();
-	ft_free(ptr2);
-	show_alloc_mem();
+	return ;
 }
 
 int		main(void)
