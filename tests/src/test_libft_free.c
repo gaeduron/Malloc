@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:38:14 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/06 14:25:47 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/06 15:01:19 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,46 @@ void	test_multiple_tiny(void)
 		g_zones[TINY] == 0);
 }
 
+void	test_3_tiny_bins(void)
+{
+	size_t	*ptr[290];
+	int		i;
+	int		bin_count;
+	t_bin	*bin;
+
+	i = 0;
+	while (i < 126)
+	{
+		ptr[i] = (size_t*)ft_malloc(MAX_TINY_CHUNK);
+		if (i == 124)
+		{
+			ft_printf("ptr[i]: %zu\n", mem_to_chunk_ptr(ptr[i])->size);
+			show_alloc_mem();
+		}
+		if (i % 5 == 0)
+			ft_free(ptr[i]);
+		i++;
+	}
+	show_alloc_mem();
+	bin = g_zones[TINY];
+	bin_count = 0;
+	while (bin != 0)
+	{
+		bin_count++;
+		bin = bin->next;
+	}
+	ASSERT("FREE: TINY zone should contain 3 bins", bin_count);
+	i = 0;
+	while (i < 126)
+	{
+		if (i % 5 != 0)
+			ft_free(ptr[i]);
+		i++;
+	}
+	ASSERT("FREE: free should work with multiple bins",
+		g_zones[TINY] == 0);
+}
+
 void	playground(void)
 {
 	return ;
@@ -129,6 +169,7 @@ int		main(void)
 	RUN(test_free_large_order2);
 	RUN(test_multiple_large);
 	RUN(test_multiple_tiny);
+	RUN(test_3_tiny_bins);
 	playground();
 	return (TEST_REPORT());
 }
