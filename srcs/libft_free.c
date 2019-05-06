@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 13:00:13 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 20:22:54 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/06 14:47:45 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	ft_free(void *ptr)
 	if ((next_chunk->size & 0b1) == 0)
 	{
 		ft_printf("malloc: *** error for object %p: \
-		pointer being freed was not allocated", ptr);
+		pointer being freed was not allocated\n", ptr);
 		return (0);
 	}
 	if (chunk->size > MAX_SMALL_CHUNK)
