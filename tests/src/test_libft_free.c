@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:38:14 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/05 20:23:23 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/15 18:50:02 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,29 +117,43 @@ void	test_multiple_tiny(void)
 		g_zones[TINY] == 0);
 }
 
+void	test_3_tiny_bins(void)
+{
+	size_t	*ptr[290];
+	int		i;
+	int		bin_count;
+	t_bin	*bin;
+
+	i = 0;
+	while (i < 290)
+	{
+		ptr[i] = (size_t*)ft_malloc(MAX_TINY_CHUNK);
+		if (i % 5 == 0)
+			ft_free(ptr[i]);
+		i++;
+	}
+	bin = g_zones[TINY];
+	bin_count = 0;
+	while (bin != 0)
+	{
+		bin_count++;
+		bin = bin->next;
+	}
+	ASSERT("FREE: TINY zone should contain 3 bins", bin_count == 3);
+	i = 0;
+	while (i < 290)
+	{
+		if (i % 5 != 0)
+			ft_free(ptr[i]);
+		i++;
+	}
+	ASSERT("FREE: free should work with multiple bins",
+		g_zones[TINY] == 0);
+}
+
 void	playground(void)
 {
-	void	*ptr;
-	void	*ptr2;
-	t_chunk	*chunk;
-
-	ptr = ft_malloc(5000);
-	chunk = (t_chunk*)ptr - 1;
-	printf("\nsize in t_chunk: %zu\n", (chunk->size / 16));
-	printf("last chunk size: %zu\n",
-		chunk[(chunk->size / 16) + 1].size);
-	printf("last chunk size after AND: %zu\n",
-		chunk[(chunk->size / 16) + 1].size & 0b1);
-	printf("large zone pointer: %p\n", g_zones[LARGE]);
-	ft_free(ptr);
-	printf("large zone pointer after free: %p\n", g_zones[LARGE]);
-	ptr = ft_malloc(5000);
-	chunk = (t_chunk*)ptr - 1;
-	ptr2 = ft_malloc(5003);
-	ptr2 = ft_malloc(4);
-	show_alloc_mem();
-	ft_free(ptr2);
-	show_alloc_mem();
+	return ;
 }
 
 int		main(void)
@@ -149,6 +163,7 @@ int		main(void)
 	RUN(test_free_large_order2);
 	RUN(test_multiple_large);
 	RUN(test_multiple_tiny);
+	RUN(test_3_tiny_bins);
 	playground();
 	return (TEST_REPORT());
 }
