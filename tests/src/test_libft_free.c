@@ -6,7 +6,7 @@
 /*   By: gduron <gduron@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/03 14:38:14 by gduron            #+#    #+#             */
-/*   Updated: 2019/05/06 15:01:19 by gduron           ###   ########.fr       */
+/*   Updated: 2019/05/15 18:50:02 by gduron           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,19 +125,13 @@ void	test_3_tiny_bins(void)
 	t_bin	*bin;
 
 	i = 0;
-	while (i < 126)
+	while (i < 290)
 	{
 		ptr[i] = (size_t*)ft_malloc(MAX_TINY_CHUNK);
-		if (i == 124)
-		{
-			ft_printf("ptr[i]: %zu\n", mem_to_chunk_ptr(ptr[i])->size);
-			show_alloc_mem();
-		}
 		if (i % 5 == 0)
 			ft_free(ptr[i]);
 		i++;
 	}
-	show_alloc_mem();
 	bin = g_zones[TINY];
 	bin_count = 0;
 	while (bin != 0)
@@ -145,9 +139,9 @@ void	test_3_tiny_bins(void)
 		bin_count++;
 		bin = bin->next;
 	}
-	ASSERT("FREE: TINY zone should contain 3 bins", bin_count);
+	ASSERT("FREE: TINY zone should contain 3 bins", bin_count == 3);
 	i = 0;
-	while (i < 126)
+	while (i < 290)
 	{
 		if (i % 5 != 0)
 			ft_free(ptr[i]);
